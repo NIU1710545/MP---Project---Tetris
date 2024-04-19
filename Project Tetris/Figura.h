@@ -52,10 +52,13 @@ private:
     TipusFigura m_figura;
     ColorFigura m_color;
 
-    int m_columa;
+    int m_columna;
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
 
+    string nomFitxer;
+
+    void inicialitzacioForma(TipusFigura forma);
 };
 
 
