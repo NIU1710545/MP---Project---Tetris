@@ -18,7 +18,7 @@ public:
 	bool taulerPle();
 
 private:
-	int m_tauler[MAX_FILA][MAX_COL];
+	ColorFigura m_tauler[MAX_FILA][MAX_COL];
 
 	void inicialitzarTauler();
 
