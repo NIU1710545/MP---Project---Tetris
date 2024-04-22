@@ -5,28 +5,28 @@ Joc::Joc()
 
 }
 
-void inicialitza(const string& nomFitxer)
+void Joc::inicialitza(const string& nomFitxer)
 {
-	m_figura.inicialitzaio(nomFitxer);
-	m_tauler.inicialitzacio(nomFitxer);
+	m_figura.inicialitzarFigura(nomFitxer);
+	m_tauler.inicialitzarTauler(nomFitxer);
 }
 
-bool giraFigura(DireccioGir direccio)
-{
-
-}
-
-bool mouFigura(int dirX)
+bool Joc::giraFigura(DireccioGir direccio)
 {
 
 }
 
-int baixaFigura()
+bool Joc::mouFigura(int dirX)
 {
 
 }
 
-void escriuTauler(const string& nomFitxer)
+int Joc::baixaFigura()
+{
+
+}
+
+void Joc::escriuTauler(const string& nomFitxer)
 {
 
 }
