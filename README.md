@@ -13,6 +13,7 @@ La dificultat del joc anirà augmentant cada vegada que el jugador passi de nive
 - [@LL-OV](https://github.com/) - Personal
 
 ## Table of Contents
+- Fitxer Principals
 ## Lessons Learned
 
 L'objectiu principal del projecte és poder implementar tots els coneixements prèviemanet ensenyats en un mateix projecte. 
