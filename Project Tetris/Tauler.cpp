@@ -1,40 +1,38 @@
 #include "Tauler.h"
+#include <iostream>
+#include <fstream>
 
-void Tauler::inicialitzarTauler()
+using namespace std;
+
+void Tauler::inicialitzarTauler(string nomFitxer) const 
 {
-	/* 0 -> No hi ha figura || -1 -> Limit del tauler
+	/* 0 -> No hi ha figura || -1 -> Limit del tauler*/
 
-	for (int i = 0; i < MAX_FILA; i++) {
-		for (int j = 0; j < MAX_COL; j++) {
+	ifstream fitxer;
 
-			if ((i == 0) || (i == MAX_FILA - 1)) {
-				m_tauler[i][j] = NO_COLOR;
+	fitxer.open(nomFitxer);
+
+	while ((fitxer.eof()) && (fitxer.is_open())) {
+		int casella;
+		fitxer >> casella;
+
+		for (int i = 1; i < MAX_FILA; i++) {
+			for (int j = 0; j < MAX_COL; j++) {
+				fitxer >> m_tauler[i][j];
 			}
-			else {
-				if ((j == 0) || (j == MAX_COL - 1)) {
-					m_tauler[i][j] = NO_COLOR;
-				}
-				else {
-					m_tauler[i][j] = COLOR_NEGRE;
-				}
-			}
-
 		}
+
+		fitxer.close();
 	}
-	*/
-
-	for (int i = 0; i < MAX_FILA; i++) {
-		for (int j = 0; j < MAX_COL; j++) {
-		}
-	}
-
-
-
 }
 
 Tauler::Tauler()
 {
-	inicialitzarTauler();
+	for (int i = 0; i < MAX_FILA; i++) {
+		for (int j = 0; j < MAX_COL; j++) {
+			m_tauler[i][j] = 0;
+		}
+	}
 }
 
 bool colocarFigura(Figura figura, int fila, int columna)
