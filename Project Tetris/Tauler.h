@@ -2,6 +2,7 @@
 #define TAULER_H
 #include "Figura.h"
 
+
 const int MAX_FILA = 8;
 const int MAX_COL = 8;
 
@@ -11,16 +12,19 @@ public:
 	Tauler();
 	~Tauler();
 
+
+	void inicialitzarTauler(string nomFitxer) const;
 	bool colocarFigura(Figura figura, int fila, int columna);
 	bool moureFigura(Figura figura, int columna);
 	bool girarFigura(Figura figura);
 	void eliminarFilesCompletades();
-	bool taulerPle();
+	bool taulerPle() const;
+
+	void escriuTauler(ostream& nomFitxer) const;
+	int setColor(int i, int j, ColorFigura color) { m_tauler[i][j] = color; }
 
 private:
 	ColorFigura m_tauler[MAX_FILA][MAX_COL];
-
-	void inicialitzarTauler();
 
 };
 
