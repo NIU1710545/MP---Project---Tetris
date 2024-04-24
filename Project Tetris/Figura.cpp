@@ -2,57 +2,93 @@
 #include <iostream>
 #include <fstream>
 
-
 using namespace std;
 
-void Figura::inicialitzacioForma(TipusFigura forma)
+// Gir en sentit horari - Moviment del lliurament
+
+void Figura::girarFigura(int gir, int area)
 {
-	switch (forma) {
+	if (gir != 4 && (gir != 0)) {
+		int temp[MAX_AMPLADA][MAX_AMPLADA];
+		// Quantitats de gir
+		for (int x = 0; x < gir; x++) {
+
+			for (int i = 0; i < area; i++) { // Fila
+				for (int j = 0; j < area; j++) { // Columna
+					temp[i][j] = m_forma[j][area - 1 - i];
+				}
+			}
+
+			for (int i = 0; i < area; i++) { // Fila
+				for (int j = 0; j < area; j++) { // Columna
+					m_forma[i][j] = temp[area - j - 1][j];
+				}
+			}
+		}
+	}
+
+}
+
+
+void Figura::inicialitzarFigura(const string nomFitxer)
+{
+
+	int figura, fila, columna, gir;
+
+	ifstream fitxerLectura;
+	fitxerLectura.open(nomFitxer);
+
+	fitxerLectura >> figura >> fila >> columna >> gir;
+	
+	fitxerLectura.close();
+
+
+	switch (figura) {
 	case 1: 
-		m_columna = 2;
-		m_fila = 2;
+		m_area = 2;
+		break;
 	case 2:
-		m_columna = 4;
-		m_fila = 4;
+		m_area = 4;
+		break;
 	case 3:
 	case 4:
 	case 5:
 	case 6:
 	case 7:
-		m_columna = 3;
-		m_fila = 3;
+		m_area = 3;
+		break;
 	default:
 		cout << "Error." << endl;
+		break;
 	}
+
 	ifstream fitxerFigura;
 
-	fitxerFigura.open(nomFitxer);
-	while (!fitxerFigura.eof() && (fitxerFigura.is_open())) {
+	fitxerFigura.open("FormaFigura.txt");
+	while (!fitxerFigura.eof()) {
 		int numForma;
 
 		fitxerFigura >> numForma;
 
-		while (numForma != forma) {
-			for (int i = 0; i < m_fila; i++) {
-				for (int j = 0; j < m_columna; j++) {
+		while (numForma != figura) {
+			for (int i = 0; i < m_area; i++) {
+				for (int j = 0; j < m_area; j++) {
 					fitxerFigura >> m_forma[i][j];
 				}
 			}
 			fitxerFigura >> numForma;
 		}
-
-		fitxerFigura.close();
 	}
-}
+	fitxerFigura.close();
 
+	girarFigura(gir, m_area);
+}
 
 
 Figura::Figura(TipusFigura figura, ColorFigura color)
 {
 	m_figura = figura;
 	m_color = color;
-	nomFitxer = "FormaFigures.txt";
-	inicialitzacioForma(figura);
 }
 
 

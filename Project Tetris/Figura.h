@@ -42,9 +42,10 @@ public:
     Figura(TipusFigura figura, ColorFigura color);
     ~Figura();
 
+    void inicialitzarFigura(const string nomFitxer);
     void desplacamentLateral(int columna);
     void baixar(int fila);
-    void girar();
+    void girarFigura(int gir, int area);
 
     void getFormaActual();
 
@@ -54,12 +55,18 @@ private:
 
     int m_columna;
     int m_fila;
+    int m_area;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
 
     string nomFitxer;
 
-    void inicialitzacioForma(TipusFigura forma);
+
 };
+
+
+/*
+ m_fila i m_columna -> Marcaran la casella pivot quan s'ha de moure
+*/
 
 
 /*
