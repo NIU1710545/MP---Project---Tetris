@@ -30,7 +30,8 @@ void Figura::girarFigura(int gir, int area)
 }
 
 
-void Figura::inicialitzarFigura(const string nomFitxer)
+
+void Figura::inicialitzarFigura(string nomFitxer)
 {
 
 	int figura, fila, columna, gir;
@@ -42,20 +43,21 @@ void Figura::inicialitzarFigura(const string nomFitxer)
 	
 	fitxerLectura.close();
 
+	int area = 0;
 
 	switch (figura) {
 	case 1: 
-		m_area = 2;
+		area = 2;
 		break;
 	case 2:
-		m_area = 4;
+		area = 4;
 		break;
 	case 3:
 	case 4:
 	case 5:
 	case 6:
 	case 7:
-		m_area = 3;
+		area = 3;
 		break;
 	default:
 		cout << "Error." << endl;
@@ -71,8 +73,8 @@ void Figura::inicialitzarFigura(const string nomFitxer)
 		fitxerFigura >> numForma;
 
 		while (numForma != figura) {
-			for (int i = 0; i < m_area; i++) {
-				for (int j = 0; j < m_area; j++) {
+			for (int i = 0; i < area; i++) {
+				for (int j = 0; j < area; j++) {
 					fitxerFigura >> m_forma[i][j];
 				}
 			}
@@ -81,7 +83,7 @@ void Figura::inicialitzarFigura(const string nomFitxer)
 	}
 	fitxerFigura.close();
 
-	girarFigura(gir, m_area);
+	girarFigura(gir, area);
 }
 
 
@@ -90,6 +92,7 @@ Figura::Figura(TipusFigura figura, ColorFigura color)
 	m_figura = figura;
 	m_color = color;
 }
+
 
 
 void desplacamentLateral(int columna)
