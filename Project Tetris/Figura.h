@@ -1,7 +1,8 @@
 #ifndef FIGURA_H
 #define FIGURA_H
 
-#include <iostream>;
+#include <iostream>
+using namespace std;
 
 typedef enum
 {
@@ -31,6 +32,7 @@ typedef enum
 
 const int MAX_ALCADA = 4;
 const int MAX_AMPLADA = 4;
+const int MAX_CASELLES = 16;
 
 typedef enum
 {
@@ -41,15 +43,18 @@ typedef enum
 class Figura
 {
 public:
-    Figura(TipusFigura figura, ColorFigura color);
+    Figura();
     ~Figura();
 
-    void inicialitzarFigura(string nomFitxer);
+    void inicialitzarFigura(const string& nomFitxer);
     void desplacamentLateral(int columna);
     void baixar(int fila);
     void girarFigura(int gir, int area);
 
     void getFormaActual();
+
+    void setFigura(TipusFigura figura) { m_figura = figura; }
+    void setColor(ColorFigura color) { m_color = color; }
 
 private:
     TipusFigura m_figura;

@@ -4,11 +4,26 @@
 
 using namespace std;
 
+Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(0) 
+{
+	for (int i = 0; i < MAX_ALCADA; i++) {
+		for (int j = 0; j < MAX_AMPLADA; j++) {
+			m_forma[i][j] = -1;
+		}
+	}
+}
+
+
+Figura::~Figura()
+{
+
+}
+
 // Gir en sentit horari - Moviment del lliurament
 
 void Figura::girarFigura(int gir, int area)
 {
-	if (gir != 4 && (gir != 0)) {
+	if (gir != 0) {
 		int temp[MAX_AMPLADA][MAX_AMPLADA];
 		// Quantitats de gir
 		for (int x = 0; x < gir; x++) {
@@ -29,9 +44,7 @@ void Figura::girarFigura(int gir, int area)
 
 }
 
-
-
-void Figura::inicialitzarFigura(string nomFitxer)
+void Figura::inicialitzarFigura(const string& nomFitxer)
 {
 
 	int figura, fila, columna, gir;
@@ -67,32 +80,35 @@ void Figura::inicialitzarFigura(string nomFitxer)
 	ifstream fitxerFigura;
 
 	fitxerFigura.open("FormaFigura.txt");
+
+	if (!fitxerFigura.is_open()) {
+		cout << "ERROR. Lectura - FormaFigura.txt;" << endl;
+		return;
+	}
+
 	while (!fitxerFigura.eof()) {
 		int numForma;
 
 		fitxerFigura >> numForma;
+		while (!fitxerFigura.eof()) {
+			int numForma;
 
-		while (numForma != figura) {
-			for (int i = 0; i < area; i++) {
-				for (int j = 0; j < area; j++) {
-					fitxerFigura >> m_forma[i][j];
-				}
-			}
 			fitxerFigura >> numForma;
+
+			while (numForma != figura) {
+				for (int i = 0; i < area; i++) {
+					for (int j = 0; j < area; j++) {
+						fitxerFigura >> m_forma[i][j];
+					}
+				}
+				fitxerFigura >> numForma;
+			}
 		}
 	}
 	fitxerFigura.close();
 
 	girarFigura(gir, area);
 }
-
-
-Figura::Figura(TipusFigura figura, ColorFigura color)
-{
-	m_figura = figura;
-	m_color = color;
-}
-
 
 
 void desplacamentLateral(int columna)
