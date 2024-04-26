@@ -16,31 +16,32 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 
 Figura::~Figura() {}
 
-// Gir en sentit horari - Moviment del lliurament
-
-void Figura::girarFigura(int gir, int area)
+int Figura::numCasellesFigura(int figura, int& limit)
 {
-	if (gir != 0) {
-		int temp[MAX_AMPLADA][MAX_AMPLADA];
-		// Quantitats de gir
-		for (int x = 0; x < gir; x++) {
-
-			for (int i = 0; i < area; i++) { // Fila
-				for (int j = 0; j < area; j++) { // Columna
-					temp[i][j] = m_forma[j][area - 1 - i];
-				}
-			}
-
-			for (int i = 0; i < area; i++) { // Fila
-				for (int j = 0; j < area; j++) { // Columna
-					m_forma[i][j] = temp[area - j - 1][j];
-				}
-			}
-		}
+	int n_caselles = -1;
+	switch (figura) {
+	case 1:
+		n_caselles = 4;
+		limit = 1;
+		break;
+	case 2:
+		n_caselles = 16;
+		limit = 3;
+		break;
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+		n_caselles = 9;
+		limit = 2;
+		break;
+	default:
+		cout << "Error." << endl;
+		break;
 	}
-
+	return n_caselles;
 }
-
 
 void Figura::setColor(int color)
 {
@@ -87,6 +88,42 @@ void Figura::setFigura(int figura)
 	}
 }
 
+void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
+{
+	int temp[MAX_ALCADA][MAX_AMPLADA];
+
+	for (int i = 0; i < gir; i++) {
+
+		if (direccio == 0) {
+			for (int j = 0; j < MAX_ALCADA; j++) {
+				for (int k = 0; k < MAX_AMPLADA; k++) {
+					temp[k][limit - j] = figura[j][k];
+				}
+			}
+
+			for (int j = 0; j < MAX_ALCADA; j++) {
+				for (int k = 0; k < MAX_AMPLADA; k++) {
+					figura[j][k] = temp[j][k];
+				}
+			}
+
+		}
+		else {
+			for (int j = 0; j < MAX_ALCADA; j++) {
+				for (int k = 0; k < MAX_AMPLADA; k++) {
+					temp[limit - k][j] = figura[j][k];
+				}
+			}
+
+			for (int j = 0; j < MAX_ALCADA; j++) {
+				for (int k = 0; k < MAX_AMPLADA; k++) {
+					figura[j][k] = temp[j][k];
+				}
+			}
+		}
+	}
+}
+
 void Figura::inicialitzarFigura(const string& nomFitxer)
 {
 
@@ -107,10 +144,11 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 		return;
 	}
 	
+	int limit = -1;
+	int forma[MAX_CASELLES]{};
 	while (!fitxerFigura.eof() && (fitxerFigura.is_open())) {
-		int forma[MAX_CASELLES];
 
-		int numCaselles = numCasellesFigura(figura);
+		int numCaselles = numCasellesFigura(figura, limit);
 
 		int j = 0;
 
@@ -122,6 +160,16 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 		}
 		fitxerFigura.close();
 	}
+
+	int x = 0;
+	for (int i = 0; i < MAX_ALCADA; i++) {
+		for (int j = 0; j < MAX_AMPLADA; j++) {
+			m_forma[i][j] = forma[x];
+			x++;
+		}
+	}
+
+	girarFigura(m_forma, gir, limit, 0);
 
 	setColor(figura);
 	setFigura(figura);

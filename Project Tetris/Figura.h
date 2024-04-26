@@ -47,9 +47,10 @@ public:
     ~Figura();
 
     void inicialitzarFigura(const string& nomFitxer);
+    void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio);
     void desplacamentLateral(int columna);
     void baixar(int fila);
-    void girarFigura(int gir, int area);
+
 
     void getFormaActual();
 
@@ -64,7 +65,7 @@ private:
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
 
-    int numCasellesFigura(int figura);
+    int numCasellesFigura(int figura, int& limit);
 };
 #endif
 
