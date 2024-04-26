@@ -15,6 +15,40 @@ Tauler::Tauler()
 
 Tauler::~Tauler() {}
 
+void Tauler::setColorCasella(ColorFigura casella, int colorCasella)
+{
+	switch (colorCasella) {
+	case 0:
+		casella = COLOR_NEGRE;
+		break;
+	case 1:
+		casella = COLOR_GROC;
+		break;
+	case 2:
+		casella = COLOR_BLAUCEL;
+		break;
+	case 3:
+		casella = COLOR_MAGENTA;
+		break;
+	case 4:
+		casella = COLOR_TARONJA;
+		break;
+	case 5:
+		casella = COLOR_BLAUFOSC;
+		break;
+	case 6:
+		casella = COLOR_VERMELL;
+		break;
+	case 7:
+		casella = COLOR_VERD;
+		break;
+
+	default:
+		cout << "ERROR" << endl;
+		break;
+	}
+}
+
 void Tauler::inicialitzarTauler(string nomFitxer) 
 {
 	ifstream fitxerLectura(nomFitxer);
