@@ -1,11 +1,5 @@
 #include "Joc.h"
 
-Joc::Joc() 
-{
-
-}
-
-Joc::~Joc() {}
 
 void Joc::inicialitza(const string& nomFitxer)
 {
