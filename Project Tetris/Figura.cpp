@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(0) 
+Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(0), m_forma()
 {
 	for (int i = 0; i < MAX_ALCADA; i++) {
 		for (int j = 0; j < MAX_AMPLADA; j++) {
@@ -14,10 +14,7 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 }
 
 
-Figura::~Figura()
-{
-
-}
+Figura::~Figura() {}
 
 // Gir en sentit horari - Moviment del lliurament
 

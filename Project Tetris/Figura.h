@@ -65,7 +65,7 @@ private:
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
 
 };
-
+#endif
 
 /*
  m_fila i m_columna -> Marcaran la casella pivot quan s'ha de moure
@@ -85,4 +85,4 @@ private:
     ...
 */
 
-#endif
+
