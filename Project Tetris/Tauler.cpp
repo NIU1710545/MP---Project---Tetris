@@ -4,6 +4,17 @@
 
 using namespace std;
 
+Tauler::Tauler()
+{
+	for (int i = 0; i < MAX_FILA; i++) {
+		for (int j = 0; j < MAX_COL; j++) {
+			m_tauler[i][j] = NO_COLOR;
+		}
+	}
+}
+
+Tauler::~Tauler() {}
+
 void Tauler::inicialitzarTauler(string nomFitxer) const 
 {
 	/* 0 -> No hi ha figura || -1 -> Limit del tauler*/
@@ -23,15 +34,6 @@ void Tauler::inicialitzarTauler(string nomFitxer) const
 		}
 
 		fitxer.close();
-	}
-}
-
-Tauler::Tauler()
-{
-	for (int i = 0; i < MAX_FILA; i++) {
-		for (int j = 0; j < MAX_COL; j++) {
-			m_tauler[i][j] = 0;
-		}
 	}
 }
 
