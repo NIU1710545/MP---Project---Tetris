@@ -41,70 +41,90 @@ void Figura::girarFigura(int gir, int area)
 
 }
 
+
+void Figura::setColor(int color)
+{
+	int intColor = 0;
+	switch (color) {
+	case 1:
+		m_color = COLOR_GROC;
+	case 2:
+		m_color = COLOR_BLAUCEL;
+	case 3:
+		m_color = COLOR_MAGENTA;
+	case 4:
+		m_color = COLOR_TARONJA;
+	case 5:
+		m_color = COLOR_BLAUFOSC;
+	case 6:
+		m_color = COLOR_VERMELL;
+	case 7:
+		m_color = COLOR_VERD;
+	default:
+		cout << "ERROR" << endl;
+	}
+}
+
+void Figura::setFigura(int figura)
+{
+	switch (figura) {
+	case 1:
+		m_figura = FIGURA_O;
+	case 2:
+		m_figura = FIGURA_I;
+	case 3:
+		m_figura = FIGURA_T;
+	case 4:
+		m_figura = FIGURA_L;
+	case 5:
+		m_figura = FIGURA_J;
+	case 6:
+		m_figura = FIGURA_Z;
+	case 7:
+		m_figura = FIGURA_S;
+	default:
+		cout << "ERROR" << endl;
+	}
+}
+
 void Figura::inicialitzarFigura(const string& nomFitxer)
 {
 
 	int figura, fila, columna, gir;
 
-	ifstream fitxerLectura;
-	fitxerLectura.open(nomFitxer);
-
-	fitxerLectura >> figura >> fila >> columna >> gir;
-	
-	fitxerLectura.close();
-
-	int area = 0;
-
-	switch (figura) {
-	case 1: 
-		area = 2;
-		break;
-	case 2:
-		area = 4;
-		break;
-	case 3:
-	case 4:
-	case 5:
-	case 6:
-	case 7:
-		area = 3;
-		break;
-	default:
-		cout << "Error." << endl;
-		break;
-	}
-
-	ifstream fitxerFigura;
-
-	fitxerFigura.open("FormaFigura.txt");
-
-	if (!fitxerFigura.is_open()) {
-		cout << "ERROR. Lectura - FormaFigura.txt;" << endl;
+	ifstream fitxerLectura(nomFitxer);
+	if (!fitxerLectura.is_open()) {
+		cout << "ERROR. Lectura" << endl;
 		return;
 	}
 
-	while (!fitxerFigura.eof()) {
-		int numForma;
+	fitxerLectura >> figura >> fila >> columna >> gir;	
+	fitxerLectura.close();
 
-		fitxerFigura >> numForma;
-		while (!fitxerFigura.eof()) {
-			int numForma;
-
-			fitxerFigura >> numForma;
-
-			while (numForma != figura) {
-				for (int i = 0; i < area; i++) {
-					for (int j = 0; j < area; j++) {
-						fitxerFigura >> m_forma[i][j];
-					}
-				}
-				fitxerFigura >> numForma;
-			}
-		}
+	ifstream fitxerFigura("FormaFigura.txt");
+	if (!fitxerFigura.is_open()) {
+		cout << "ERROR. Lectura" << endl;
+		return;
 	}
-	fitxerFigura.close();
+	
+	while (!fitxerFigura.eof() && (fitxerFigura.is_open())) {
+		int forma[MAX_CASELLES];
 
-	girarFigura(gir, area);
+		int numCaselles = numCasellesFigura(figura);
+
+		int j = 0;
+
+		while (j <= figura) {
+			for (int i = 0; i < numCaselles; i++) {
+				fitxerFigura >> forma[i];
+			}
+			j++;
+		}
+		fitxerFigura.close();
+	}
+
+	setColor(figura);
+	setFigura(figura);
 }
 
 

@@ -53,8 +53,8 @@ public:
 
     void getFormaActual();
 
-    void setFigura(TipusFigura figura) { m_figura = figura; }
-    void setColor(ColorFigura color) { m_color = color; }
+    void setColor(int color);
+    void setFigura(int figura);
 
 private:
     TipusFigura m_figura;
@@ -64,6 +64,7 @@ private:
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
 
+    int numCasellesFigura(int figura);
 };
 #endif
 
