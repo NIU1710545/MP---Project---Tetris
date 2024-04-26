@@ -15,25 +15,32 @@ Tauler::Tauler()
 
 Tauler::~Tauler() {}
 
-void Tauler::inicialitzarTauler(string nomFitxer) const 
+void Tauler::inicialitzarTauler(string nomFitxer) 
 {
-	/* 0 -> No hi ha figura || -1 -> Limit del tauler*/
+	ifstream fitxerLectura(nomFitxer);
+	if (!fitxerLectura.is_open()) {
+		cout << "ERROR. Lectura" << endl;
+		return;
+	}
 
-	ifstream fitxer;
 
-	fitxer.open(nomFitxer);
+	int fila[MAX_COL]{};
+	while (!fitxerLectura.eof() && (fitxerLectura.is_open())) {
 
-	while ((fitxer.eof()) && (fitxer.is_open())) {
-		int casella;
-		fitxer >> casella;
+		for (int i = 0; i < MAX_FILA + 1; i++) {
 
-		for (int i = 1; i < MAX_FILA; i++) {
-			for (int j = 0; j < MAX_COL; j++) {
-				fitxer >> m_tauler[i][j];
+			if (i != 0) {
+				for (int j = 0; j < MAX_COL; j++) {
+					fitxerLectura >> fila[j];
+				}
+
+				for (int j = 0; j < MAX_COL; j++) {
+					setColorCasella(m_tauler[i - 1][j], fila[j]);
+				}
 			}
-		}
 
-		fitxer.close();
+		}
+		fitxerLectura.close();
 	}
 }
 

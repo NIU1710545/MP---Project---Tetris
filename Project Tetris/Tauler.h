@@ -13,7 +13,9 @@ public:
 	~Tauler();
 
 
-	void inicialitzarTauler(string nomFitxer) const;
+	void inicialitzarTauler(string nomFitxer);
+	void setColorCasella(ColorFigura casella, int colorCasella);
+
 	bool colocarFigura(Figura figura, int fila, int columna);
 	bool moureFigura(Figura figura, int columna);
 	bool girarFigura(Figura figura);
@@ -21,7 +23,7 @@ public:
 	bool taulerPle() const;
 
 	void escriuTauler(ostream& nomFitxer) const;
-	int setColor(int i, int j, ColorFigura color) { m_tauler[i][j] = color; }
+
 
 private:
 	ColorFigura m_tauler[MAX_FILA][MAX_COL];
