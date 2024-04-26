@@ -49,20 +49,28 @@ void Figura::setColor(int color)
 	switch (color) {
 	case 1:
 		m_color = COLOR_GROC;
+		break;
 	case 2:
 		m_color = COLOR_BLAUCEL;
+		break;
 	case 3:
 		m_color = COLOR_MAGENTA;
+		break;
 	case 4:
 		m_color = COLOR_TARONJA;
+		break;
 	case 5:
 		m_color = COLOR_BLAUFOSC;
+		break;
 	case 6:
 		m_color = COLOR_VERMELL;
+		break;
 	case 7:
 		m_color = COLOR_VERD;
+		break;
 	default:
 		cout << "ERROR" << endl;
+		break;
 	}
 }
 
@@ -71,20 +79,28 @@ void Figura::setFigura(int figura)
 	switch (figura) {
 	case 1:
 		m_figura = FIGURA_O;
+		break;
 	case 2:
 		m_figura = FIGURA_I;
+		break;
 	case 3:
 		m_figura = FIGURA_T;
+		break;
 	case 4:
 		m_figura = FIGURA_L;
+		break;
 	case 5:
 		m_figura = FIGURA_J;
+		break;
 	case 6:
 		m_figura = FIGURA_Z;
+		break;
 	case 7:
 		m_figura = FIGURA_S;
+		break;
 	default:
 		cout << "ERROR" << endl;
+		break;
 	}
 }
 
