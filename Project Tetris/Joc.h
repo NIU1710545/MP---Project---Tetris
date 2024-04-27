@@ -3,12 +3,13 @@
 #include "Tauler.h"
 #include "Figura.h"
 #include <string>
+#include <fstream>
 using namespace std;
 
 class Joc
 {
 public:
-	Joc();
+	Joc() {}
 	void inicialitza(const string& nomFitxer);
 	bool giraFigura(DireccioGir direccio);
 	bool mouFigura(int dirX);
