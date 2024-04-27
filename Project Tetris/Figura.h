@@ -48,14 +48,13 @@ public:
 
     void inicialitzarFigura(const string& nomFitxer);
     void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio);
-    void desplacamentLateral(int columna);
-    void baixar(int fila);
-
-
-    void getFormaActual();
-
+    bool girarFigura(DireccioGir direccio);
+    
     void setColor(int color);
     void setFigura(int figura);
+
+    void desplacamentLateral(int columna);
+    void baixar(int fila);
 
 private:
     TipusFigura m_figura;

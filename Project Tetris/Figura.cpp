@@ -106,13 +106,13 @@ void Figura::setFigura(int figura)
 
 void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
 {
-	int temp[MAX_ALCADA][MAX_AMPLADA];
+	int temp[MAX_ALCADA][MAX_AMPLADA]{};
 
 	for (int i = 0; i < gir; i++) {
 
 		if (direccio == 0) {
-			for (int j = 0; j < MAX_ALCADA; j++) {
-				for (int k = 0; k < MAX_AMPLADA; k++) {
+			for (int j = 0; j <= limit; j++) {
+				for (int k = 0; k <= limit; k++) {
 					temp[k][limit - j] = figura[j][k];
 				}
 			}
@@ -125,8 +125,8 @@ void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
 
 		}
 		else {
-			for (int j = 0; j < MAX_ALCADA; j++) {
-				for (int k = 0; k < MAX_AMPLADA; k++) {
+			for (int j = 0; j <= limit; j++) {
+				for (int k = 0; k <= limit; k++) {
 					temp[limit - k][j] = figura[j][k];
 				}
 			}
@@ -168,8 +168,8 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 
 		int j = 0;
 
-		while (j <= figura) {
-			for (int i = 0; i < numCaselles; i++) {
+		while (j < figura) {
+			for (int i = 0; i < MAX_CASELLES; i++) {
 				fitxerFigura >> forma[i];
 			}
 			j++;
