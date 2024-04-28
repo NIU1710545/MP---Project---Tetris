@@ -16,16 +16,13 @@ public:
 	int baixaFigura();
 	void escriuTauler(const string& nomFitxer);
 
-	Tauler getTauler() { return m_tauler; }
-	Figura getFigura() { return m_figura; }
-
-	void setTauler(const Tauler& tauler) { m_tauler = tauler; }
-	void setFigura(const Figura& figura) { m_figura = figura; }
 
 private:
 	Tauler m_tauler;
 	Figura m_figura;
 
+	void colocaFigura(int nfigura);
+	int determinarFigura(int figura);
 };
 
 
