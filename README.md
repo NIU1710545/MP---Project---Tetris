@@ -12,8 +12,8 @@ La dificultat del joc anirà augmentant cada vegada que el jugador passi de nive
 - [@NIU1710545](https://github.com/NIU1710545) - Identificació Universitat
 - [@LL-OV](https://github.com/) - Personal
 
-## Table of Contents
-- Fitxer Principals
+## Functions and main sections
+
 ## Lessons Learned
 
 L'objectiu principal del projecte és poder implementar tots els coneixements prèviemanet ensenyats en un mateix projecte. 
