@@ -13,7 +13,6 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 	}
 }
 
-
 Figura::~Figura() {}
 
 int Figura::numCasellesFigura(int figura, int& limit)
@@ -104,7 +103,7 @@ void Figura::setFigura(int figura)
 	}
 }
 
-void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
+void Figura::girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
 {
 	int temp[MAX_ALCADA][MAX_AMPLADA]{};
 
@@ -189,6 +188,11 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 
 	setColor(figura);
 	setFigura(figura);
+}
+
+bool Figura::girarFigura(DireccioGir direccio)
+{
+	return true;
 }
 
 
