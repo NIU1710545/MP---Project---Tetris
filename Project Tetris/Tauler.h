@@ -14,16 +14,10 @@ public:
 
 
 	void inicialitzarTauler(string nomFitxer);
-	void setColorCasella(ColorFigura casella, int colorCasella);
 
-	bool colocarFigura(Figura figura, int fila, int columna);
-	bool moureFigura(Figura figura, int columna);
-	bool girarFigura(Figura figura);
-	void eliminarFilesCompletades();
-	bool taulerPle() const;
-
-	void escriuTauler(ostream& nomFitxer) const;
-
+	ColorFigura getCasella(int i, int j) const { return m_tauler[i][j]; }
+	ColorFigura& getCasellaRef(int i, int j) { return m_tauler[i][j]; }
+	void setColorCasella(ColorFigura& casella, int colorCasella);
 
 private:
 	ColorFigura m_tauler[MAX_FILA][MAX_COL];

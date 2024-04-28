@@ -15,7 +15,7 @@ Tauler::Tauler()
 
 Tauler::~Tauler() {}
 
-void Tauler::setColorCasella(ColorFigura casella, int colorCasella)
+void Tauler::setColorCasella(ColorFigura& casella, int colorCasella)
 {
 	switch (colorCasella) {
 	case 0:
@@ -70,6 +70,11 @@ void Tauler::inicialitzarTauler(string nomFitxer)
 
 				for (int j = 0; j < MAX_COL; j++) {
 					setColorCasella(m_tauler[i - 1][j], fila[j]);
+				}
+			}
+			else {
+				for (int j = 0; j < 4; j++) {
+					fitxerLectura >> fila[j];
 				}
 			}
 
