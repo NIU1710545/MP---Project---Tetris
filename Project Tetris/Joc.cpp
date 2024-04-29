@@ -14,7 +14,20 @@ bool Joc::giraFigura(DireccioGir direccio)
 
 bool Joc::mouFigura(int dirX)
 {
-	return true;
+	filesCompletes = 0;
+
+	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColuma());
+	int columna = m_figura.getColuma() + dirX;
+	if (!m_tauler.colisions(m_figura, m_figura.getFila(), columna)) {
+		m_tauler.desplacarLateral(m_figura, dirX);
+		colocaFigura(determinarFigura(m_figura.getFigura()));
+		filesCompletes = m_tauler.columnaCompleta();
+		return true;
+	}
+	else {
+		colocaFigura(determinarFigura(m_figura.getFigura()));
+		return false;
+	}
 }
 
 int Joc::baixaFigura()
