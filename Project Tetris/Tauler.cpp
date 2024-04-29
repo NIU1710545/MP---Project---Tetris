@@ -148,16 +148,16 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 
 bool moureFigura(Figura figura, int columna)
 {
-
+	return false;
 }
 
 bool girarFigura(Figura figura)
 {
-
+	return false;
 }
 
 
 bool taulerPle()
 {
-
+	return false;
 }
