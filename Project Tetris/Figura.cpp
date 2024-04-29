@@ -13,9 +13,6 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 	}
 }
 
-
-Figura::~Figura() {}
-
 int Figura::numCasellesFigura(int figura, int& limit)
 {
 	int n_caselles = -1;
@@ -104,15 +101,15 @@ void Figura::setFigura(int figura)
 	}
 }
 
-void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
+void Figura::girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
 {
-	int temp[MAX_ALCADA][MAX_AMPLADA];
+	int temp[MAX_ALCADA][MAX_AMPLADA]{};
 
 	for (int i = 0; i < gir; i++) {
 
 		if (direccio == 0) {
-			for (int j = 0; j < MAX_ALCADA; j++) {
-				for (int k = 0; k < MAX_AMPLADA; k++) {
+			for (int j = 0; j <= limit; j++) {
+				for (int k = 0; k <= limit; k++) {
 					temp[k][limit - j] = figura[j][k];
 				}
 			}
@@ -125,8 +122,8 @@ void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
 
 		}
 		else {
-			for (int j = 0; j < MAX_ALCADA; j++) {
-				for (int k = 0; k < MAX_AMPLADA; k++) {
+			for (int j = 0; j <= limit; j++) {
+				for (int k = 0; k <= limit; k++) {
 					temp[limit - k][j] = figura[j][k];
 				}
 			}
@@ -154,13 +151,15 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	fitxerLectura >> figura >> fila >> columna >> gir;	
 	fitxerLectura.close();
 
+	m_fila = fila;
+	m_columna = columna;
+
 	ifstream fitxerFigura("FormaFigura.txt");
 	if (!fitxerFigura.is_open()) {
 		cout << "ERROR. Lectura" << endl;
 		return;
 	}
 	
-	int limit = -1;
 	int forma[MAX_CASELLES]{};
 	while (!fitxerFigura.eof() && (fitxerFigura.is_open())) {
 
@@ -168,8 +167,8 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 
 		int j = 0;
 
-		while (j <= figura) {
-			for (int i = 0; i < numCaselles; i++) {
+		while (j < figura) {
+			for (int i = 0; i < MAX_CASELLES; i++) {
 				fitxerFigura >> forma[i];
 			}
 			j++;
@@ -189,6 +188,11 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 
 	setColor(figura);
 	setFigura(figura);
+}
+
+bool Figura::girarFigura(DireccioGir direccio)
+{
+	return true;
 }
 
 

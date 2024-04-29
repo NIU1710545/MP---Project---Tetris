@@ -44,23 +44,32 @@ class Figura
 {
 public:
     Figura();
-    ~Figura();
 
     void inicialitzarFigura(const string& nomFitxer);
     void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio);
-    void desplacamentLateral(int columna);
-    void baixar(int fila);
 
-
-    void getFormaActual();
-
+    bool girarFigura(DireccioGir direccio);
+    
     void setColor(int color);
     void setFigura(int figura);
+    void setFila(int fila) { m_fila = fila; }
+    void setColumna(int columna) { m_columna = columna; }
+
+    ColorFigura getColor() const { return m_color; }
+    TipusFigura getFigura() const { return m_figura; }
+    int getFila() const { return m_fila; }
+    int getColuma() const { return m_columna; }
+    int getForma(int i, int j) const { return m_forma[i][j]; }
+    int getLimit() const { return limit; }
+
+    void desplacamentLateral(int columna);
+    void baixar(int fila);
 
 private:
     TipusFigura m_figura;
     ColorFigura m_color;
 
+    int limit = -1;
     int m_columna;
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
