@@ -154,7 +154,7 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	m_fila = fila;
 	m_columna = columna;
 
-	ifstream fitxerFigura("FormaFigura.txt");
+	ifstream fitxerFigura("FormaFigures.txt");
 	if (!fitxerFigura.is_open()) {
 		cout << "ERROR. Lectura" << endl;
 		return;

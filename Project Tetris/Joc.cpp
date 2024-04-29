@@ -44,8 +44,8 @@ void Joc::colocaFigura(int nfigura)
 		}
 	}
 
-	for (int i = 0; i < m_figura.getLimit(); i++) {
-		for (int j = 0; j < m_figura.getLimit(); j++) {
+	for (int i = 0; i <= m_figura.getLimit(); i++) {
+		for (int j = 0; j <= m_figura.getLimit(); j++) {
 			if (m_figura.getForma(i, j) != 0) {
 				switch (nfigura) {
 				case 2:
