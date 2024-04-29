@@ -1,7 +1,8 @@
 #ifndef FIGURA_H
 #define FIGURA_H
 
-#include <iostream>;
+#include <iostream>
+using namespace std;
 
 typedef enum
 {
@@ -31,6 +32,7 @@ typedef enum
 
 const int MAX_ALCADA = 4;
 const int MAX_AMPLADA = 4;
+const int MAX_CASELLES = 16;
 
 typedef enum
 {
@@ -41,15 +43,19 @@ typedef enum
 class Figura
 {
 public:
-    Figura(TipusFigura figura, ColorFigura color);
+    Figura();
     ~Figura();
 
-    void inicialitzarFigura(string nomFitxer);
+    void inicialitzarFigura(const string& nomFitxer);
+    void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio);
     void desplacamentLateral(int columna);
     void baixar(int fila);
-    void girarFigura(int gir, int area);
+
 
     void getFormaActual();
+
+    void setColor(int color);
+    void setFigura(int figura);
 
 private:
     TipusFigura m_figura;
@@ -59,8 +65,9 @@ private:
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
 
+    int numCasellesFigura(int figura, int& limit);
 };
-
+#endif
 
 /*
  m_fila i m_columna -> Marcaran la casella pivot quan s'ha de moure
@@ -80,4 +87,4 @@ private:
     ...
 */
 
-#endif
+
