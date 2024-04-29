@@ -21,9 +21,14 @@ int Joc::baixaFigura()
 {
 	filesCompletes = 0;
 	// La figura ha de baixar una casella cada cert temps.
+	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColuma());
 	int fila = m_figura.getFila() + 1;
 	if (!m_tauler.colisions(m_figura, fila, m_figura.getColuma())) {
 		m_tauler.baixarFigura(m_figura);
+		colocaFigura(determinarFigura(m_figura.getFigura()));
+		filesCompletes = m_tauler.columnaCompleta();
+	}
+	else {
 		colocaFigura(determinarFigura(m_figura.getFigura()));
 		filesCompletes = m_tauler.columnaCompleta();
 	}
