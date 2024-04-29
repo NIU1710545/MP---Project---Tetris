@@ -123,6 +123,11 @@ void Tauler::baixarFigura(Figura& figura)
 	figura.setFila(figura.getFila() + 1);
 }
 
+void Tauler::desplacarLateral(Figura& figura, int direccio)
+{
+	figura.setColumna(figura.getColuma() + direccio);
+}
+
 bool Tauler::colisions(Figura figura, int fila, int columna)
 {
 	// Fer un mètode que pugui determinar el començament de la matriu des del pivot en el tauler

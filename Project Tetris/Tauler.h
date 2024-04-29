@@ -15,6 +15,7 @@ public:
 
 	void inicialitzarTauler(string nomFitxer);
 	void baixarFigura(Figura& figura);
+	void desplacarLateral(Figura& figura, int direccio);
 
 	bool colisions(Figura figura, int fila, int columna);
 	int columnaCompleta();
