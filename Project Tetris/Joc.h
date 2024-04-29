@@ -20,6 +20,8 @@ public:
 private:
 	Tauler m_tauler;
 	Figura m_figura;
+	int puntuacio = 0;
+	int filesCompletes = 0;
 
 	void colocaFigura(int nfigura);
 	int determinarFigura(int figura);

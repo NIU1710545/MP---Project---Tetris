@@ -19,7 +19,16 @@ bool Joc::mouFigura(int dirX)
 
 int Joc::baixaFigura()
 {
-	return 0;
+	filesCompletes = 0;
+	// La figura ha de baixar una casella cada cert temps.
+	int fila = m_figura.getFila() + 1;
+	if (!m_tauler.colisions(m_figura, fila, m_figura.getColuma())) {
+		m_tauler.baixarFigura(m_figura);
+		colocaFigura(determinarFigura(m_figura.getFigura()));
+		filesCompletes = m_tauler.columnaCompleta();
+	}
+
+	return filesCompletes;
 }
 
 void Joc::colocaFigura(int nfigura)
