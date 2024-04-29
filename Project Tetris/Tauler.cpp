@@ -135,7 +135,7 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 					return true;
 				}
 				else {
-					if (m_tauler[i][j] != 0) {
+					if (getCasella(fila + i - 1, columna + j - 1) != 0) { //Problema només amb figures 3x3
 						return true;
 					}
 				}
@@ -145,6 +145,18 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 	}
 	return false;
 }
+
+void Tauler::eliminarFigura(Figura figura, int fila, int columna)
+{
+	for (int i = 0; i <= figura.getLimit(); i++) {
+		for (int j = 0; j <= figura.getLimit(); j++) {
+			if (figura.getForma(i, j) != 0) {
+				setColorCasella(getCasellaRef(fila + i - 1, columna + j - 1), 0); //Només amb figures 3x3
+			}
+		}
+	}
+}
+
 
 bool moureFigura(Figura figura, int columna)
 {

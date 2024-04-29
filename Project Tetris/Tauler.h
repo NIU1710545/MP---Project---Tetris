@@ -18,6 +18,7 @@ public:
 
 	bool colisions(Figura figura, int fila, int columna);
 	int columnaCompleta();
+	void eliminarFigura(Figura figura, int fila, int columna);
 
 	ColorFigura getCasella(int i, int j) const { return m_tauler[i][j]; }
 	ColorFigura& getCasellaRef(int i, int j) { return m_tauler[i][j]; }
