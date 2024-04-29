@@ -194,19 +194,3 @@ bool Figura::girarFigura(DireccioGir direccio)
 {
 	return true;
 }
-
-
-void desplacamentLateral(int columna)
-{
-
-}
-
-void baixar(int fila)
-{
-
-}
-
-void girar()
-{
-
-}

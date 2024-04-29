@@ -62,9 +62,6 @@ public:
     int getForma(int i, int j) const { return m_forma[i][j]; }
     int getLimit() const { return limit; }
 
-    void desplacamentLateral(int columna);
-    void baixar(int fila);
-
 private:
     TipusFigura m_figura;
     ColorFigura m_color;
