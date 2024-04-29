@@ -13,8 +13,6 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 	}
 }
 
-Figura::~Figura() {}
-
 int Figura::numCasellesFigura(int figura, int& limit)
 {
 	int n_caselles = -1;
@@ -153,13 +151,15 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	fitxerLectura >> figura >> fila >> columna >> gir;	
 	fitxerLectura.close();
 
+	m_fila = fila;
+	m_columna = columna;
+
 	ifstream fitxerFigura("FormaFigura.txt");
 	if (!fitxerFigura.is_open()) {
 		cout << "ERROR. Lectura" << endl;
 		return;
 	}
 	
-	int limit = -1;
 	int forma[MAX_CASELLES]{};
 	while (!fitxerFigura.eof() && (fitxerFigura.is_open())) {
 
