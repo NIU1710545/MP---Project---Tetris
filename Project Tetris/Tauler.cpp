@@ -83,9 +83,67 @@ void Tauler::inicialitzarTauler(string nomFitxer)
 	}
 }
 
-bool colocarFigura(Figura figura, int fila, int columna)
+void Tauler::eliminarFilesCompletades(int filaEliminar)
 {
+	for (int i = filaEliminar; i >= 0; i--) {
+		for (int j = 0; j < MAX_COL; j++) {
+			if (i != 0) {
+				setColorCasella(getCasellaRef(i, j), getCasella(i + 1, j));
+			}
+			else {
+				setColorCasella(getCasellaRef(i, j), 0);
+			}
+		}
+	}
+}
 
+int Tauler::columnaCompleta()
+{
+	int contador = 0;
+	int filesEliminades = 0;
+
+	for (int i = MAX_FILA - 1; i >= 0; i--) {
+		for (int j = 0; j < MAX_COL; j++) {
+			if (getCasella(i, j) != 0) {
+				contador++;
+			}
+		}
+
+		if (contador == MAX_COL) {
+			eliminarFilesCompletades(i);
+			filesEliminades++;
+		}
+		contador = 0;
+	}
+	return filesEliminades;
+}
+
+void Tauler::baixarFigura(Figura& figura)
+{
+	figura.setFila(figura.getFila() + 1);
+}
+
+bool Tauler::colisions(Figura figura, int fila, int columna)
+{
+	// Fer un mètode que pugui determinar el començament de la matriu des del pivot en el tauler
+	// De moment només de 3x3
+
+	for (int i = 0; i <= figura.getLimit(); i++) {
+		for (int j = 0; j <= figura.getLimit(); j++) {
+			if (figura.getForma(i, j) != 0) {
+				if ((fila + i - 1 >= MAX_FILA) || (columna - 1 + j >= MAX_COL) || (columna - 1 + j) < 0) {
+					return true;
+				}
+				else {
+					if (m_tauler[i][j] != 0) {
+						return true;
+					}
+				}
+
+			}
+		}
+	}
+	return false;
 }
 
 bool moureFigura(Figura figura, int columna)
@@ -98,10 +156,6 @@ bool girarFigura(Figura figura)
 
 }
 
-void eliminarFilesCompletades()
-{
-
-}
 
 bool taulerPle()
 {
