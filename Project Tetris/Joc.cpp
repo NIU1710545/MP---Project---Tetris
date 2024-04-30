@@ -9,7 +9,28 @@ void Joc::inicialitza(const string& nomFitxer)
 
 bool Joc::giraFigura(DireccioGir direccio)
 {
-	return m_figura.girarFigura(direccio);
+	int dir = -1;
+	int contrari = 0;
+	if (direccio == 0) {
+		dir = 0;
+	}
+	else {
+		contrari = -1;
+	}
+
+	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColumna());
+	m_figura.girarFigura(1, m_figura.getLimit(), dir);
+	if (!m_tauler.colisions(m_figura, m_figura.getFila(), m_figura.getColumna())) {
+		colocaFigura(determinarFigura(m_figura.getFigura()));
+		filesCompletes = m_tauler.columnaCompleta();
+		return true;
+	}
+	else {
+		m_figura.girarFigura(1, m_figura.getLimit(), contrari);
+		colocaFigura(determinarFigura(m_figura.getFigura()));
+		filesCompletes = m_tauler.columnaCompleta();
+		return false;
+	}
 }
 
 bool Joc::mouFigura(int dirX)
