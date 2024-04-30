@@ -72,7 +72,24 @@ void Joc::colocaFigura(int nfigura)
 				case 3:
 					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));
 					break;
-				case 4:// Comrpovar si hi ha alguna manera de fer el 4x4, sense fer una versió diferent per a cada posició de la figura
+				case 4:
+					switch (m_figura.getPosicio4x4()) {
+					case 0:
+						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 2), m_figura.getForma(i, j));
+						break;
+					case 1:
+						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 2, columna + j - 2), m_figura.getForma(i, j));
+						break;
+					case 2:
+						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 2, columna + j - 1), m_figura.getForma(i, j));
+						break;
+					case 3:
+						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));
+						break;
+					default:
+						cout << "ERRRO" << endl;
+						break;
+					}
 					break;
 				default:
 					cout << "ERROR" << endl;
