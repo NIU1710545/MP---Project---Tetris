@@ -54,6 +54,7 @@ public:
     void setFigura(int figura);
     void setFila(int fila) { m_fila = fila; }
     void setColumna(int columna) { m_columna = columna; }
+    void setPivot4x4(int posicio);
 
     ColorFigura getColor() const { return m_color; }
     TipusFigura getFigura() const { return m_figura; }
@@ -61,6 +62,9 @@ public:
     int getColuma() const { return m_columna; }
     int getForma(int i, int j) const { return m_forma[i][j]; }
     int getLimit() const { return limit; }
+    int getPosicio4x4() const { return posicio4x4; }
+    int getPivotFila() const { return pivotFila; }
+    int getPivotColumna() const { return pivotColumna; }
 
 private:
     TipusFigura m_figura;
@@ -70,6 +74,9 @@ private:
     int m_columna;
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
+    int pivotFila = 0;
+    int pivotColumna = 0;
+    int posicio4x4 = 0;
 
     int numCasellesFigura(int figura, int& limit);
 };
