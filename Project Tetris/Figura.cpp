@@ -126,7 +126,7 @@ void Figura::setFigura(int figura)
 	}
 }
 
-void Figura::girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio)
+void Figura::girarFigura(int gir, int limit, int direccio)
 {
 	int temp[MAX_ALCADA][MAX_AMPLADA]{};
 
@@ -135,13 +135,13 @@ void Figura::girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int dire
 		if (direccio == 0) {
 			for (int j = 0; j <= limit; j++) {
 				for (int k = 0; k <= limit; k++) {
-					temp[k][limit - j] = figura[j][k];
+					temp[k][limit - j] = m_forma[j][k];
 				}
 			}
 
 			for (int j = 0; j < MAX_ALCADA; j++) {
 				for (int k = 0; k < MAX_AMPLADA; k++) {
-					figura[j][k] = temp[j][k];
+					m_forma[j][k] = temp[j][k];
 				}
 			}
 
@@ -149,13 +149,13 @@ void Figura::girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int dire
 		else {
 			for (int j = 0; j <= limit; j++) {
 				for (int k = 0; k <= limit; k++) {
-					temp[limit - k][j] = figura[j][k];
+					temp[limit - k][j] = m_forma[j][k];
 				}
 			}
 
 			for (int j = 0; j < MAX_ALCADA; j++) {
 				for (int k = 0; k < MAX_AMPLADA; k++) {
-					figura[j][k] = temp[j][k];
+					m_forma[j][k] = temp[j][k];
 				}
 			}
 		}
@@ -212,11 +212,7 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	setColor(figura);
 	setFigura(figura);
 
-	girarFigura(m_forma, gir, limit, 0);
+	girarFigura( gir, limit, 0);
 
 }
 
-bool Figura::girarFigura(DireccioGir direccio)
-{
-	return true;
-}

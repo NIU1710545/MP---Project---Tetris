@@ -46,7 +46,7 @@ public:
     Figura();
 
     void inicialitzarFigura(const string& nomFitxer);
-    void girarFigura(int figura[][MAX_AMPLADA], int gir, int limit, int direccio);
+    void girarFigura(int gir, int limit, int direccio);
 
     bool girarFigura(DireccioGir direccio);
     
