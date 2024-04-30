@@ -24,23 +24,15 @@ void Figura::setPivot4x4(int posicio) // Moviment cap a la dreta
 
 	switch (posicio) {
 	case 0:
-		pivotFila = 1;
-		pivotColumna = 2;
 		posicio4x4 = 0;
 		break;
 	case 1:
-		pivotFila = 2;
-		pivotColumna = 2;
 		posicio4x4 = 1;
 		break;
 	case 2:
-		pivotFila = 2;
-		pivotColumna = 1;
 		posicio4x4 = 2;
 		break;
 	case 3:
-		pivotFila = 1;
-		pivotColumna = 1;
 		posicio4x4 = 3;
 		break;
 	}
@@ -57,8 +49,6 @@ int Figura::numCasellesFigura(int figura, int& limit)
 	case 2:
 		n_caselles = 16;
 		limit = 3;
-		pivotFila = 1;
-		pivotColumna = 2;
 		break;
 	case 3:
 	case 4:
@@ -67,8 +57,6 @@ int Figura::numCasellesFigura(int figura, int& limit)
 	case 7:
 		n_caselles = 9;
 		limit = 2;
-		pivotFila = 1;
-		pivotColumna = 1;
 		break;
 	default:
 		cout << "Error." << endl;

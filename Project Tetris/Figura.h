@@ -63,8 +63,6 @@ public:
     int getForma(int i, int j) const { return m_forma[i][j]; }
     int getLimit() const { return limit; }
     int getPosicio4x4() const { return posicio4x4; }
-    int getPivotFila() const { return pivotFila; }
-    int getPivotColumna() const { return pivotColumna; }
 
 private:
     TipusFigura m_figura;
@@ -74,8 +72,6 @@ private:
     int m_columna;
     int m_fila;
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
-    int pivotFila = 0;
-    int pivotColumna = 0;
     int posicio4x4 = 0;
 
     int numCasellesFigura(int figura, int& limit);
