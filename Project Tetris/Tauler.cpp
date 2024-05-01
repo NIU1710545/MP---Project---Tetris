@@ -130,19 +130,56 @@ void Tauler::desplacarLateral(Figura& figura, int direccio)
 
 bool Tauler::colisions(Figura figura, int fila, int columna)
 {
-	// Fer un mètode que pugui determinar el començament de la matriu des del pivot en el tauler
-	// De moment només de 3x3
 
 	for (int i = 0; i <= figura.getLimit(); i++) {
 		for (int j = 0; j <= figura.getLimit(); j++) {
 			if (figura.getForma(i, j) != 0) {
-				if ((fila + i - 1 >= MAX_FILA) || (columna - 1 + j >= MAX_COL) || (columna - 1 + j) < 0) {
-					return true;
-				}
-				else {
-					if (getCasella(fila + i - 1, columna + j - 1) != 0) { //Problema només amb figures 3x3
+				switch (figura.getFigura()) {
+				case 1:
+					if (((fila + i >= MAX_FILA) || (fila + i < 0) || (columna + j >= MAX_COL) ||
+						(columna + j) < 0) || (getCasella(fila + i, columna + j) != 0)) {
 						return true;
 					}
+					break;
+				case 2:
+					switch (figura.getPosicio4x4()) {
+					case 0:
+						if (((fila + i - 1 >= MAX_FILA) || (fila + i - 1 < 0) || (columna + j - 2 >= MAX_COL) ||
+							(columna + j - 2) < 0) || (getCasella(fila + i - 1, columna + j - 2) != 0)) {
+							return true;
+						}
+						break;
+					case 1:
+						if (((fila + i - 2 >= MAX_FILA) || (fila + i - 2 < 0) || (columna + j - 2 >= MAX_COL) ||
+							(columna + j - 2) < 0) || (getCasella(fila + i - 2, columna + j - 2) != 0)) {
+							return true;
+						}
+						break;
+					case 2:
+						if (((fila + i - 2 >= MAX_FILA) || (fila + i - 2 < 0) || (columna + j - 1 >= MAX_COL) ||
+							(columna + j - 1) < 0) || (getCasella(fila + i - 2, columna + j - 1) != 0)) {
+							return true;
+						}
+						break;
+					case 3:
+						if (((fila + i - 1 >= MAX_FILA) || (fila + i - 1 < 0) || (columna + j - 1 >= MAX_COL) ||
+							(columna + j - 1) < 0) || (getCasella(fila + i - 1, columna + j - 1) != 0)) {
+							return true;
+						}
+						break;
+					default:
+						cout << "ERROR" << endl;
+						break;
+					}
+					break;
+				case 3: case 4: case 5: case 6: case 7:
+					if (((fila + i - 1 >= MAX_FILA) || (fila + i - 1 < 0) || (columna - 1 + j >= MAX_COL) ||
+						(columna - 1 + j) < 0) || (getCasella(fila + i - 1, columna + j - 1) != 0)) {
+						return true;
+					}
+					break;
+				default:
+					cout << "ERROR" << endl;
 				}
 
 			}
@@ -156,25 +193,30 @@ void Tauler::eliminarFigura(Figura figura, int fila, int columna)
 	for (int i = 0; i <= figura.getLimit(); i++) {
 		for (int j = 0; j <= figura.getLimit(); j++) {
 			if (figura.getForma(i, j) != 0) {
-				setColorCasella(getCasellaRef(fila + i - 1, columna + j - 1), 0); //Només amb figures 3x3
+				switch (figura.getFigura()) {
+				case 1:
+					setColorCasella(getCasellaRef(fila + i - 1, columna + j), 0);
+					break;
+				case 2:
+					switch (figura.getPosicio4x4()) {
+					case 0:
+						setColorCasella(getCasellaRef(fila + i - 1, columna + j - 2), 0);
+					case 1:
+						setColorCasella(getCasellaRef(fila + i - 2, columna + j - 2), 0);
+					case 2:
+						setColorCasella(getCasellaRef(fila + i - 2, columna + j - 1), 0);
+					case 3:
+						setColorCasella(getCasellaRef(fila + i - 1, columna + j - 1), 0);
+					}
+					break;
+				case 3: case 4: case 5: case 6: case 7:
+					setColorCasella(getCasellaRef(fila + i - 1, columna + j - 1), 0);
+					break;
+				default:
+					cout << "ERROR" << endl;
+					break;
+				}
 			}
 		}
 	}
-}
-
-
-bool moureFigura(Figura figura, int columna)
-{
-	return false;
-}
-
-bool girarFigura(Figura figura)
-{
-	return false;
-}
-
-
-bool taulerPle()
-{
-	return false;
 }
