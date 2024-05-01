@@ -69,10 +69,6 @@ int Joc::baixaFigura()
 	if (!m_tauler.colisions(m_figura, fila, m_figura.getColuma())) {
 		m_tauler.baixarFigura(m_figura);
 	}
-	else {
-		colocaFigura(determinarFigura(m_figura.getFigura()));
-		filesCompletes = m_tauler.columnaCompleta();
-	}
 
 	return filesCompletes;
 }
@@ -148,6 +144,37 @@ int Joc::determinarFigura(int figura)
 	return area;
 }
 
+int Joc::eliminarFilaCompleta()
+{
+	int filesCompletes = 0;
+	int files[MAX_FILA]{ -1 };
+
+
+	for (int i = MAX_FILA - 1; i >= 0; i--) {
+		bool filaCompleta = true;
+
+		for (int j = 0; j < MAX_COL; j++) {
+			if (m_tauler.getCasella(i, j) == 0) {
+				filaCompleta = false;
+				break;
+			}
+		}
+
+		if (filaCompleta) {
+			filesCompletes++;
+			// Si la fila [i] està completa l'eliminem i les de dalt baixen 
+			for (int k = i; k > 0; k--) {
+				for (int j = 0; j < MAX_COL; j++) {
+					m_tauler.setColorCasella(m_tauler.getCasellaRef(k, j), m_tauler.getCasella(k - 1, j));
+				}
+			}
+			i = MAX_FILA;
+		}
+	}
+
+	return filesCompletes;
+}
+
 void Joc::escriuTauler(const string& nomFitxer)
 {
 	ofstream fitxerEscriure(nomFitxer);
@@ -157,6 +184,7 @@ void Joc::escriuTauler(const string& nomFitxer)
 	}
 
 	colocaFigura(determinarFigura(m_figura.getFigura()));
+	filesCompletes = eliminarFilaCompleta();
 
 	for (int i = 0; i < MAX_FILA; i++) {
 		for (int j = 0; j < MAX_COL; j++) {
