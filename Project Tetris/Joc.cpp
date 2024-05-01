@@ -10,16 +10,26 @@ void Joc::inicialitza(const string& nomFitxer)
 bool Joc::giraFigura(DireccioGir direccio)
 {
 	int dir = -1;
-	int contrari = 0;
+	int contrari = -1;
 	if (direccio == 0) {
 		dir = 0;
 	}
 	else {
-		contrari = -1;
+		contrari = 0;
 	}
 
 	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColumna());
 	m_figura.girarFigura(1, m_figura.getLimit(), dir);
+
+	if (m_figura.getFigura() == 2) {
+		if (dir == 0) {
+			m_figura.setPivot4x4(m_figura.getPosicio4x4() + 1);
+		}
+		else {
+			m_figura.setPivot4x4(m_figura.getPosicio4x4() - 1);
+		}
+	}
+
 	if (!m_tauler.colisions(m_figura, m_figura.getFila(), m_figura.getColumna())) {
 		colocaFigura(determinarFigura(m_figura.getFigura()));
 		filesCompletes = m_tauler.columnaCompleta();
@@ -27,6 +37,14 @@ bool Joc::giraFigura(DireccioGir direccio)
 	}
 	else {
 		m_figura.girarFigura(1, m_figura.getLimit(), contrari);
+		if (m_figura.getFigura() == 2) {
+			if (dir != 0) {
+				m_figura.setPivot4x4(m_figura.getPosicio4x4() + 1);
+			}
+			else {
+				m_figura.setPivot4x4(m_figura.getPosicio4x4() - 1);
+			}
+		}
 		colocaFigura(determinarFigura(m_figura.getFigura()));
 		filesCompletes = m_tauler.columnaCompleta();
 		return false;
@@ -54,6 +72,7 @@ bool Joc::mouFigura(int dirX)
 int Joc::baixaFigura()
 {
 	filesCompletes = 0;
+
 	// La figura ha de baixar una casella cada cert temps.
 	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColuma());
 	int fila = m_figura.getFila() + 1;
@@ -88,7 +107,7 @@ void Joc::colocaFigura(int nfigura)
 			if (m_figura.getForma(i, j) != 0) {
 				switch (nfigura) {
 				case 2:
-					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i, columna + j), m_figura.getForma(i, j));
+					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i-1, columna + j), m_figura.getForma(i, j));
 					break;
 				case 3:
 					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));
@@ -159,4 +178,6 @@ void Joc::escriuTauler(const string& nomFitxer)
 	}
 
 	fitxerEscriure.close();
+
+	m_figura.setPivot4x4(0);
 }
