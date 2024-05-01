@@ -47,8 +47,6 @@ public:
 
     void inicialitzarFigura(const string& nomFitxer);
     void girarFigura(int gir, int limit, int direccio);
-
-    bool girarFigura(DireccioGir direccio);
     
     void setColor(int color);
     void setFigura(int figura);

@@ -18,23 +18,13 @@ void Figura::setPivot4x4(int posicio) // Moviment cap a la dreta
 	if (posicio < 0) {
 		posicio4x4 = 3;
 	}
-	if (posicio > 3) {
-		posicio4x4 = 0;
-	}
-
-	switch (posicio) {
-	case 0:
-		posicio4x4 = 0;
-		break;
-	case 1:
-		posicio4x4 = 1;
-		break;
-	case 2:
-		posicio4x4 = 2;
-		break;
-	case 3:
-		posicio4x4 = 3;
-		break;
+	else {
+		if (posicio > 3) {
+			posicio4x4 = 0;
+		}
+		else {
+			posicio4x4 = posicio;
+		}
 	}
 }
 
@@ -212,7 +202,10 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	setColor(figura);
 	setFigura(figura);
 
-	girarFigura( gir, limit, 0);
+	girarFigura(gir, limit, 0);
+	if (figura == 2) {
+		setPivot4x4(gir);
+	}
 
 }
 
