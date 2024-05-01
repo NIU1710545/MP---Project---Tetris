@@ -188,35 +188,3 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 	return false;
 }
 
-void Tauler::eliminarFigura(Figura figura, int fila, int columna)
-{
-	for (int i = 0; i <= figura.getLimit(); i++) {
-		for (int j = 0; j <= figura.getLimit(); j++) {
-			if (figura.getForma(i, j) != 0) {
-				switch (figura.getFigura()) {
-				case 1:
-					setColorCasella(getCasellaRef(fila + i - 1, columna + j), 0);
-					break;
-				case 2:
-					switch (figura.getPosicio4x4()) {
-					case 0:
-						setColorCasella(getCasellaRef(fila + i - 1, columna + j - 2), 0);
-					case 1:
-						setColorCasella(getCasellaRef(fila + i - 2, columna + j - 2), 0);
-					case 2:
-						setColorCasella(getCasellaRef(fila + i - 2, columna + j - 1), 0);
-					case 3:
-						setColorCasella(getCasellaRef(fila + i - 1, columna + j - 1), 0);
-					}
-					break;
-				case 3: case 4: case 5: case 6: case 7:
-					setColorCasella(getCasellaRef(fila + i - 1, columna + j - 1), 0);
-					break;
-				default:
-					cout << "ERROR" << endl;
-					break;
-				}
-			}
-		}
-	}
-}
