@@ -18,7 +18,6 @@ bool Joc::giraFigura(DireccioGir direccio)
 		contrari = 0;
 	}
 
-	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColumna());
 	m_figura.girarFigura(1, m_figura.getLimit(), dir);
 
 	if (m_figura.getFigura() == 2) {
@@ -31,8 +30,6 @@ bool Joc::giraFigura(DireccioGir direccio)
 	}
 
 	if (!m_tauler.colisions(m_figura, m_figura.getFila(), m_figura.getColumna())) {
-		colocaFigura(determinarFigura(m_figura.getFigura()));
-		filesCompletes = m_tauler.columnaCompleta();
 		return true;
 	}
 	else {
@@ -45,8 +42,6 @@ bool Joc::giraFigura(DireccioGir direccio)
 				m_figura.setPivot4x4(m_figura.getPosicio4x4() - 1);
 			}
 		}
-		colocaFigura(determinarFigura(m_figura.getFigura()));
-		filesCompletes = m_tauler.columnaCompleta();
 		return false;
 	}
 }
@@ -55,16 +50,12 @@ bool Joc::mouFigura(int dirX)
 {
 	filesCompletes = 0;
 
-	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColuma());
 	int columna = m_figura.getColuma() + dirX;
 	if (!m_tauler.colisions(m_figura, m_figura.getFila(), columna)) {
 		m_tauler.desplacarLateral(m_figura, dirX);
-		colocaFigura(determinarFigura(m_figura.getFigura()));
-		filesCompletes = m_tauler.columnaCompleta();
 		return true;
 	}
 	else {
-		colocaFigura(determinarFigura(m_figura.getFigura()));
 		return false;
 	}
 }
@@ -74,12 +65,9 @@ int Joc::baixaFigura()
 	filesCompletes = 0;
 
 	// La figura ha de baixar una casella cada cert temps.
-	m_tauler.eliminarFigura(m_figura, m_figura.getFila(), m_figura.getColuma());
 	int fila = m_figura.getFila() + 1;
 	if (!m_tauler.colisions(m_figura, fila, m_figura.getColuma())) {
 		m_tauler.baixarFigura(m_figura);
-		colocaFigura(determinarFigura(m_figura.getFigura()));
-		filesCompletes = m_tauler.columnaCompleta();
 	}
 	else {
 		colocaFigura(determinarFigura(m_figura.getFigura()));
