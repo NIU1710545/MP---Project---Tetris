@@ -19,29 +19,11 @@ bool Joc::giraFigura(DireccioGir direccio)
 	}
 
 	m_figura.girarFigura(1, m_figura.getLimit(), dir);
-
-	if (m_figura.getFigura() == 2) {
-		if (dir == 0) {
-			m_figura.setPivot4x4(m_figura.getPosicio4x4() + 1);
-		}
-		else {
-			m_figura.setPivot4x4(m_figura.getPosicio4x4() - 1);
-		}
-	}
-
 	if (!m_tauler.colisions(m_figura, m_figura.getFila(), m_figura.getColumna())) {
 		return true;
 	}
 	else {
 		m_figura.girarFigura(1, m_figura.getLimit(), contrari);
-		if (m_figura.getFigura() == 2) {
-			if (dir != 0) {
-				m_figura.setPivot4x4(m_figura.getPosicio4x4() + 1);
-			}
-			else {
-				m_figura.setPivot4x4(m_figura.getPosicio4x4() - 1);
-			}
-		}
 		return false;
 	}
 }
@@ -93,27 +75,8 @@ void Joc::colocaFigura(int nfigura)
 				case 2:
 					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i-1, columna + j), m_figura.getForma(i, j));
 					break;
-				case 3:
+				case 3: case 4:
 					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));
-					break;
-				case 4:
-					switch (m_figura.getPosicio4x4()) {
-					case 0:
-						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 2), m_figura.getForma(i, j));
-						break;
-					case 1:
-						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 2, columna + j - 2), m_figura.getForma(i, j));
-						break;
-					case 2:
-						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 2, columna + j - 1), m_figura.getForma(i, j));
-						break;
-					case 3:
-						m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));
-						break;
-					default:
-						cout << "ERRRO" << endl;
-						break;
-					}
 					break;
 				default:
 					cout << "ERROR" << endl;
@@ -165,7 +128,12 @@ int Joc::eliminarFilaCompleta()
 			// Si la fila [i] està completa l'eliminem i les de dalt baixen 
 			for (int k = i; k > 0; k--) {
 				for (int j = 0; j < MAX_COL; j++) {
-					m_tauler.setColorCasella(m_tauler.getCasellaRef(k, j), m_tauler.getCasella(k - 1, j));
+					if (k != 0) {
+						m_tauler.setColorCasella(m_tauler.getCasellaRef(k, j), m_tauler.getCasella(k - 1, j));
+					}
+					else {
+						m_tauler.setColorCasella(m_tauler.getCasellaRef(k, j), 0);
+					}
 				}
 			}
 			i = MAX_FILA;
@@ -195,5 +163,4 @@ void Joc::escriuTauler(const string& nomFitxer)
 
 	fitxerEscriure.close();
 
-	m_figura.setPivot4x4(0);
 }
