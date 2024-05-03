@@ -44,7 +44,6 @@ class Figura
 {
 public:
     Figura();
-    int Parts();
     void inicialitzarFigura(const string& nomFitxer);
     void girarFigura(int gir, int limit, int direccio);
     
@@ -56,7 +55,7 @@ public:
     ColorFigura getColor() const { return m_color; }
     TipusFigura getFigura() const { return m_figura; }
     int getFila() const { return m_fila; }
-    int getColuma() const { return m_columna; }
+    int getColumna() const { return m_columna; }
     int getForma(int i, int j) const { return m_forma[i][j]; }
     int getLimit() const { return limit; }
 

@@ -32,7 +32,7 @@ bool Joc::mouFigura(int dirX)
 {
 	filesCompletes = 0;
 
-	int columna = m_figura.getColuma() + dirX;
+	int columna = m_figura.getColumna() + dirX;
 	if (!m_tauler.colisions(m_figura, m_figura.getFila(), columna)) {
 		m_tauler.desplacarLateral(m_figura, dirX);
 		return true;
@@ -48,7 +48,7 @@ int Joc::baixaFigura()
 
 	// La figura ha de baixar una casella cada cert temps.
 	int fila = m_figura.getFila() + 1;
-	if (!m_tauler.colisions(m_figura, fila, m_figura.getColuma())) {
+	if (!m_tauler.colisions(m_figura, fila, m_figura.getColumna())) {
 		m_tauler.baixarFigura(m_figura);
 	}
 
@@ -58,7 +58,7 @@ int Joc::baixaFigura()
 void Joc::colocaFigura(int nfigura)
 {
 	int fila = m_figura.getFila() ;
-	int columna = m_figura.getColuma() ;
+	int columna = m_figura.getColumna() ;
 	int forma[MAX_ALCADA][MAX_AMPLADA]{};
 
 
@@ -126,7 +126,7 @@ int Joc::eliminarFilaCompleta()
 		if (filaCompleta) {
 			filesCompletes++;
 			// Si la fila [i] està completa l'eliminem i les de dalt baixen 
-			for (int k = i; k > 0; k--) {
+			for (int k = i; k >= 0; k--) {
 				for (int j = 0; j < MAX_COL; j++) {
 					if (k != 0) {
 						m_tauler.setColorCasella(m_tauler.getCasellaRef(k, j), m_tauler.getCasella(k - 1, j));
@@ -134,6 +134,7 @@ int Joc::eliminarFilaCompleta()
 					else {
 						m_tauler.setColorCasella(m_tauler.getCasellaRef(k, j), 0);
 					}
+
 				}
 			}
 			i = MAX_FILA;

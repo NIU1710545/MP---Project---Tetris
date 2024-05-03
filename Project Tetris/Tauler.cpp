@@ -105,7 +105,7 @@ void Tauler::baixarFigura(Figura& figura)
 
 void Tauler::desplacarLateral(Figura& figura, int direccio)
 {
-	figura.setColumna(figura.getColuma() + direccio);
+	figura.setColumna(figura.getColumna() + direccio);
 }
 
 bool Tauler::colisions(Figura figura, int fila, int columna)

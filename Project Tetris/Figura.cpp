@@ -155,6 +155,7 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	m_fila = fila;
 	m_columna = columna;
 
+	/*
 	ifstream fitxerFigura("FormaFigures.txt");
 	if (!fitxerFigura.is_open()) {
 		cout << "ERROR. Lectura" << endl;
@@ -177,62 +178,65 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 		}
 		fitxerFigura.close();
 	}
-
-	/*
-	int Parts[MAX_CASELLES][7]
-	{
-		{
-			{ 1, 1, 0, 0; }
-			{ 1, 1, 0, 0; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-		{
-			{ 0, 0, 0, 0; }
-			{ 2, 2, 2, 2; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-		{
-			{ 0, 3, 0, 0; }
-			{ 3, 3, 3, 0; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-		{
-			{ 0, 0, 4, 0; }
-			{ 4, 4, 4, 0; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-		{
-			{ 5, 0, 0, 0; }
-			{ 5, 5, 5, 0; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-		{
-			{ 6, 6, 0, 0; }
-			{ 0, 6, 6, 0; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-		{
-			{ 0, 7, 7, 0; }
-			{ 7, 7, 0, 0; }
-			{ 0, 0, 0, 0; }
-			{ 0, 0, 0, 0; }
-		}
-
-	}
 	*/
 
-	int x = 0;
-	for (int i = 0; i < MAX_ALCADA; i++) {
-		for (int j = 0; j < MAX_AMPLADA; j++) {
-			m_forma[i][j] = forma[x];
-			x++;
+	int Parts[7][4][4]
+	{
+		{
+			{ 1, 1, 0, 0 },
+			{ 1, 1, 0, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
+		},
+		{
+			{ 0, 0, 0, 0 },
+			{ 2, 2, 2, 2 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
+		},
+		{
+			{ 0, 3, 0, 0 },
+			{ 3, 3, 3, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
+		},
+		{
+			{ 0, 0, 4, 0 },
+			{ 4, 4, 4, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
+		},
+		{
+			{ 5, 0, 0, 0 },
+			{ 5, 5, 5, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
+		},
+		{
+			{ 6, 6, 0, 0 },
+			{ 0, 6, 6, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
+		},
+		{
+			{ 0, 7, 7, 0 },
+			{ 7, 7, 0, 0 },
+			{ 0, 0, 0, 0 },
+			{ 0, 0, 0, 0 },
 		}
+
+	};
+
+	int numCaselles = numCasellesFigura(figura, limit);
+
+	int i = 0;
+	while (i < figura) {
+		for (int j = 0; j < MAX_ALCADA; j++) {
+			for (int k = 0; k < MAX_AMPLADA; k++) {
+				m_forma[j][k] = Parts[i][j][k];
+			}
+		}
+		i++;
 	}
 
 	setColor(figura);
