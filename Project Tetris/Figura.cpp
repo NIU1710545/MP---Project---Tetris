@@ -14,7 +14,7 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 }
 
 
-int Figura::numCasellesFigura(int figura, int& limit)
+int Figura::determinarLimit(int figura)
 {
 	int n_caselles = -1;
 	switch (figura) {
@@ -43,7 +43,6 @@ int Figura::numCasellesFigura(int figura, int& limit)
 
 void Figura::setColor(int color)
 {
-	int intColor = 0;
 	switch (color) {
 	case 1:
 		m_color = COLOR_GROC;
@@ -227,21 +226,17 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 
 	};
 
-	int numCaselles = numCasellesFigura(figura, limit);
+	determinarLimit(figura);
 
-	int i = 0;
-	while (i < figura) {
-		for (int j = 0; j < MAX_ALCADA; j++) {
-			for (int k = 0; k < MAX_AMPLADA; k++) {
-				m_forma[j][k] = Parts[i][j][k];
-			}
+
+	for (int j = 0; j < MAX_ALCADA; j++) {
+		for (int k = 0; k < MAX_AMPLADA; k++) {
+			m_forma[j][k] = Parts[figura-1][j][k];
 		}
-		i++;
 	}
 
 	setColor(figura);
 	setFigura(figura);
-
 	girarFigura(gir, limit, 0);
 
 }

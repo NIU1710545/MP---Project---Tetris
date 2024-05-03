@@ -69,7 +69,7 @@ private:
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
     int posicio4x4 = 0;
 
-    int numCasellesFigura(int figura, int& limit);
+    int determinarLimit(int figura);
 };
 #endif
 

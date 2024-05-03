@@ -25,8 +25,6 @@ public:
 
 private:
 	ColorFigura m_tauler[MAX_FILA][MAX_COL];
-
-	void eliminarFilesCompletades(int filaEliminar);
 };
 
 /*

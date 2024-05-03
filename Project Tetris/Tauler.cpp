@@ -57,7 +57,6 @@ void Tauler::inicialitzarTauler(string nomFitxer)
 		return;
 	}
 
-
 	int fila[MAX_COL]{};
 	while (!fitxerLectura.eof() && (fitxerLectura.is_open())) {
 
@@ -82,21 +81,6 @@ void Tauler::inicialitzarTauler(string nomFitxer)
 		fitxerLectura.close();
 	}
 }
-
-void Tauler::eliminarFilesCompletades(int filaEliminar)
-{
-	for (int i = filaEliminar; i >= 0; i--) {
-		for (int j = 0; j < MAX_COL; j++) {
-			if (i != 0) {
-				setColorCasella(getCasellaRef(i, j), getCasella(i + 1, j));
-			}
-			else {
-				setColorCasella(getCasellaRef(i, j), 0);
-			}
-		}
-	}
-}
-
 
 void Tauler::baixarFigura(Figura& figura)
 {
