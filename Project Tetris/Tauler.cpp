@@ -97,26 +97,6 @@ void Tauler::eliminarFilesCompletades(int filaEliminar)
 	}
 }
 
-int Tauler::columnaCompleta()
-{
-	int contador = 0;
-	int filesEliminades = 0;
-
-	for (int i = MAX_FILA - 1; i >= 0; i--) {
-		for (int j = 0; j < MAX_COL; j++) {
-			if (getCasella(i, j) != 0) {
-				contador++;
-			}
-		}
-
-		if (contador == MAX_COL) {
-			eliminarFilesCompletades(i);
-			filesEliminades++;
-		}
-		contador = 0;
-	}
-	return filesEliminades;
-}
 
 void Tauler::baixarFigura(Figura& figura)
 {
@@ -141,38 +121,7 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 						return true;
 					}
 					break;
-				case 2:
-					switch (figura.getPosicio4x4()) {
-					case 0:
-						if (((fila + i - 1 >= MAX_FILA) || (fila + i - 1 < 0) || (columna + j - 2 >= MAX_COL) ||
-							(columna + j - 2) < 0) || (getCasella(fila + i - 1, columna + j - 2) != 0)) {
-							return true;
-						}
-						break;
-					case 1:
-						if (((fila + i - 2 >= MAX_FILA) || (fila + i - 2 < 0) || (columna + j - 2 >= MAX_COL) ||
-							(columna + j - 2) < 0) || (getCasella(fila + i - 2, columna + j - 2) != 0)) {
-							return true;
-						}
-						break;
-					case 2:
-						if (((fila + i - 2 >= MAX_FILA) || (fila + i - 2 < 0) || (columna + j - 1 >= MAX_COL) ||
-							(columna + j - 1) < 0) || (getCasella(fila + i - 2, columna + j - 1) != 0)) {
-							return true;
-						}
-						break;
-					case 3:
-						if (((fila + i - 1 >= MAX_FILA) || (fila + i - 1 < 0) || (columna + j - 1 >= MAX_COL) ||
-							(columna + j - 1) < 0) || (getCasella(fila + i - 1, columna + j - 1) != 0)) {
-							return true;
-						}
-						break;
-					default:
-						cout << "ERROR" << endl;
-						break;
-					}
-					break;
-				case 3: case 4: case 5: case 6: case 7:
+				case 2: case 3: case 4: case 5: case 6: case 7:
 					if (((fila + i - 1 >= MAX_FILA) || (fila + i - 1 < 0) || (columna - 1 + j >= MAX_COL) ||
 						(columna - 1 + j) < 0) || (getCasella(fila + i - 1, columna + j - 1) != 0)) {
 						return true;
