@@ -13,20 +13,6 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 	}
 }
 
-void Figura::setPivot4x4(int posicio) // Moviment cap a la dreta
-{
-	if (posicio < 0) {
-		posicio4x4 = 3;
-	}
-	else {
-		if (posicio > 3) {
-			posicio4x4 = 0;
-		}
-		else {
-			posicio4x4 = posicio;
-		}
-	}
-}
 
 int Figura::numCasellesFigura(int figura, int& limit)
 {
@@ -174,6 +160,7 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 		cout << "ERROR. Lectura" << endl;
 		return;
 	}
+
 	
 	int forma[MAX_CASELLES]{};
 	while (!fitxerFigura.eof() && (fitxerFigura.is_open())) {
@@ -191,6 +178,55 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 		fitxerFigura.close();
 	}
 
+	/*
+	int Parts[MAX_CASELLES][7]
+	{
+		{
+			{ 1, 1, 0, 0; }
+			{ 1, 1, 0, 0; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+		{
+			{ 0, 0, 0, 0; }
+			{ 2, 2, 2, 2; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+		{
+			{ 0, 3, 0, 0; }
+			{ 3, 3, 3, 0; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+		{
+			{ 0, 0, 4, 0; }
+			{ 4, 4, 4, 0; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+		{
+			{ 5, 0, 0, 0; }
+			{ 5, 5, 5, 0; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+		{
+			{ 6, 6, 0, 0; }
+			{ 0, 6, 6, 0; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+		{
+			{ 0, 7, 7, 0; }
+			{ 7, 7, 0, 0; }
+			{ 0, 0, 0, 0; }
+			{ 0, 0, 0, 0; }
+		}
+
+	}
+	*/
+
 	int x = 0;
 	for (int i = 0; i < MAX_ALCADA; i++) {
 		for (int j = 0; j < MAX_AMPLADA; j++) {
@@ -203,9 +239,6 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	setFigura(figura);
 
 	girarFigura(gir, limit, 0);
-	if (figura == 2) {
-		setPivot4x4(gir);
-	}
 
 }
 
