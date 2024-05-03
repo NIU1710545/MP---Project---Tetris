@@ -26,6 +26,7 @@ private:
 
 	void colocaFigura(int nfigura);
 	int determinarFigura(int figura);
+	int eliminarFilaCompleta();
 };
 
 
