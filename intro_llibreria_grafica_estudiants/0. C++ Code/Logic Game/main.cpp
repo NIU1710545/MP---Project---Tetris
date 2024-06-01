@@ -28,6 +28,7 @@
 
 #include "./Partida.h"
 #include "./InfoJoc.h"
+#include "./Tetris.h"
 
 
 int main(int argc, const char* argv[])
@@ -41,7 +42,11 @@ int main(int argc, const char* argv[])
     //Mostrem la finestra grafica
     pantalla.show();
 
-    Partida game;
+    Tetris tetris;
+
+    // CODI PER LA GESTIÓ DEL MENÚ I DE LES OPCIONS DEL JOC
+    int punts = -1;
+    punts = tetris.juga(pantalla);
 
     Uint64 NOW = SDL_GetPerformanceCounter();
     Uint64 LAST = 0;
@@ -55,7 +60,7 @@ int main(int argc, const char* argv[])
         // Captura tots els events de ratolí i teclat de l'ultim cicle
         pantalla.processEvents();
 
-        game.actualitza(deltaTime);
+        //tetris.actualitza(deltaTime);
 
         // Actualitza la pantalla
         pantalla.update();

@@ -17,7 +17,6 @@ public:
 	int baixaFigura();
 	void escriuTauler(const string& nomFitxer);
 
-
 private:
 	Tauler m_tauler;
 	Figura m_figura;

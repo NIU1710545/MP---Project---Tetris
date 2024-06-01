@@ -1,21 +1,50 @@
 #include "Partida.h"
 #include "InfoJoc.h"
 #include "GraphicManager.h"
+#include "Joc.h"
 
 Partida::Partida()
 {
-    m_temps = 0;
-    for (int i = 0; i < MIDA; i++)
-        for (int j = 0; j < MIDA; j++)
-            m_forma[i][j] = NO_COLOR;
-    m_forma[0][0] = COLOR_BLAUFOSC;
-    m_forma[1][0] = COLOR_BLAUFOSC;
-    m_forma[1][1] = COLOR_BLAUFOSC;
-    m_forma[1][2] = COLOR_BLAUFOSC;
-    m_fila = 1;
-    m_columna = 5;
 }
 
+
+void Partida::actualitza(double deltaTime)
+{
+
+    GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
+    GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER, false);
+
+}
+
+
+void Partida::inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
+    const string& fitxerMoviments)
+{   
+    ifstream fileFigures(fitxerFigures);
+    ifstream fileMoviments(fitxerMoviments);
+    if (fileFigures.is_open() && (fileMoviments.is_open())) {
+        
+        m_joc.inicialitza(mode, fitxerInicial);
+
+        string line = " ";
+        while (!fileFigures.eof() && (fileFigures.is_open())) {
+            
+        }
+
+        while (!fileMoviments.eof() && (fileMoviments.is_open())) {
+
+        }
+
+    }
+    else {
+        cout << "ERROR. Inicialitzar Partida";
+    }
+}
+
+
+
+
+/*
 void Partida::actualitza(double deltaTime)
 {
     //TODO 1: Interactuar amb la crida per dibuixar gràfics (sprites).
@@ -87,3 +116,4 @@ void Partida::actualitza(double deltaTime)
 
 }
 
+*/
