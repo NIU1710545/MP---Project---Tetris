@@ -26,23 +26,30 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
         
         m_joc.inicialitza(mode, fitxerInicial);
 
-        string line = " ";
+        LlistaFigures llistaFigures;
+        LlistaMoviments llistaMoviments;
+
         while (!fileFigures.eof() && (fileFigures.is_open())) {
-            
+            int figura, fila, columna, gir;
+            fileFigures >> figura >> fila >> columna >> gir;
+            llistaFigures.afegirFigura(figura, fila, columna, gir);
         }
 
         while (!fileMoviments.eof() && (fileMoviments.is_open())) {
-
+            int moviment;
+            fileMoviments >> moviment;
+            llistaMoviments.afegirMoviment(moviment);
         }
-
     }
     else {
         cout << "ERROR. Inicialitzar Partida";
     }
 }
 
-
-
+/* Accedir als continguts dels documents
+llistaFigures.imprimirLlista();
+llistaMoviments.imprimirLlista();
+*/
 
 /*
 void Partida::actualitza(double deltaTime)
