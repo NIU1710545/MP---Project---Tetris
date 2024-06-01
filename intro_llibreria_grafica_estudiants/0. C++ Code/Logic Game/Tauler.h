@@ -12,12 +12,12 @@ public:
 	Tauler();
 	~Tauler();
 
-
 	void inicialitzarTauler(string nomFitxer);
 	void baixarFigura(Figura& figura);
 	void desplacarLateral(Figura& figura, int direccio);
 
 	bool colisions(Figura figura, int fila, int columna);
+	void dibuixa();
 
 	ColorFigura getCasella(int i, int j) const { return m_tauler[i][j]; }
 	ColorFigura& getCasellaRef(int i, int j) { return m_tauler[i][j]; }
