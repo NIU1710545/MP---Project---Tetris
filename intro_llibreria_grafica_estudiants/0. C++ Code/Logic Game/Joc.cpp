@@ -1,11 +1,34 @@
 #include "Joc.h"
 
-
-void Joc::inicialitza(const string& nomFitxer)
+void Joc::inicialitza(const string& nomFitxer, int mode)
 {
 	m_figura.inicialitzarFigura(nomFitxer);
 	m_tauler.inicialitzarTauler(nomFitxer);
+
+	if (nomFitxer == "test.txt") {
+			
+	}
+
 }
+
+void Joc::dibuixa()
+{
+	m_tauler.dibuixa();
+	m_figura.dibuixa();
+}
+
+void Joc::novaFigura()
+{
+
+}
+ // Baixa de cop la figura fins col·locar-la
+void Joc::baixaFiguraCop()
+{
+	while (m_tauler.colisions(m_figura, m_figura.getFila() + 1, m_figura.getColumna())) {
+		m_tauler.baixarFigura(m_figura);
+	}
+}
+
 
 bool Joc::giraFigura(DireccioGir direccio)
 {
