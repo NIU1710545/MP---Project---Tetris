@@ -19,7 +19,7 @@ public:
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);
-    void actualitza(double deltaTime);
+    void actualitza(int mode, double deltaTime);
 
 private:
     double m_temps;

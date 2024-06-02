@@ -3,13 +3,13 @@
 
 typedef enum
 {
-    TECLA_ESQUERRA,
-    TECLA_DRETA,
-    TECLA_AMUNT,
-    TECLA_ABAIX,
-    TECLA_ESPAI,
-    TECLA_ESCAPE,
-    NO_TECLA
+    TECLA_ESQUERRA = 1,
+    TECLA_DRETA = 2,
+    TECLA_AMUNT =3,
+    TECLA_ABAIX =4,
+    TECLA_ESPAI =5,
+    TECLA_ESCAPE = 7,
+    NO_TECLA = -1
 } TipusTecla;
 
 // Tamany de la pantalla gràfica

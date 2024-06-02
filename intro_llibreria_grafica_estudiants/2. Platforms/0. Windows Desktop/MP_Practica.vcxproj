@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -190,7 +190,7 @@
     <ClInclude Include="..\..\0. C++ Code\Logic Game\GraphicManager.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Tauler.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Tetris.h" />
-    <ClInclude Include="NodeFigura .h" />
+    <ClInclude Include="NodeFigura.h" />
     <ClInclude Include="NodeMoviment.h" />
   </ItemGroup>
   <ItemGroup>

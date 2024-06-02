@@ -1,5 +1,6 @@
 #include "Tetris.h"
 #include "fsrmscreen.h"
+#include <list>
 
 Tetris::Tetris() 
 {
@@ -22,6 +23,21 @@ int Tetris::juga(Screen& pantalla)
 	cout << "4. Sortir";
 	cin >> opcioMenu;
 
+	switch (opcioMenu) {
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+
+	default:
+		cout << "ERROR. Menu" << endl;
+		break;
+	}
+
 }
 
 
@@ -41,6 +57,3 @@ void Tetris::mostraPuntuacions()
 	}
 
 }
-
-
-

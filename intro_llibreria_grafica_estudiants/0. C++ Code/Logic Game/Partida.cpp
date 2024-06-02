@@ -2,17 +2,88 @@
 #include "InfoJoc.h"
 #include "GraphicManager.h"
 #include "Joc.h"
+#include "NodeFigura .h"
+#include "NodeMoviment.h"
+#include "SDL_keyboard.h"
+
 
 Partida::Partida()
 {
 }
 
 
-void Partida::actualitza(double deltaTime)
+void Partida::actualitza(int mode, double deltaTime)
 {
 
+    if (mode == 1) {
+        // Normal
+        TipusTecla tecla = NO_TECLA;
+        if (Keyboard_GetKeyTrg(KEYBOARD_LEFT)) {
+            tecla = TECLA_ESQUERRA;
+        }
+        if (Keyboard_GetKeyTrg(KEYBOARD_RIGHT)) {
+            tecla = TECLA_DRETA;
+        }
+        if (Keyboard_GetKeyTrg(KEYBOARD_UP)) {
+            tecla = TECLA_AMUNT;
+        }
+        if (Keyboard_GetKeyTrg(KEYBOARD_DOWN)) {
+            tecla = TECLA_ABAIX;
+        }
+        if (Keyboard_GetKeyTrg(KEYBOARD_SPACE)) {
+            tecla = TECLA_ESPAI;
+        }
+        if (Keyboard_GetKeyTrg(KEYBOARD_ESCAPE)) {
+            tecla = TECLA_ESCAPE;
+        }
+
+        switch (tecla) {
+        case TECLA_ESQUERRA:
+            m_joc.mouFigura(-1);
+            break;
+        case TECLA_DRETA:
+            m_joc.mouFigura(1);
+        case TECLA_AMUNT:
+            m_joc.giraFigura(GIR_HORARI);
+        case TECLA_ABAIX:
+            m_joc.giraFigura(GIR_ANTI_HORARI);
+        case TECLA_ESPAI:
+            m_joc.baixaFiguraCop();
+        case TECLA_ESCAPE:
+            break;
+        default:
+            cout << "ERROR. Tecles" << endl;
+        }
+
+        m_temps += deltaTime;
+        if (m_temps > 0.5) {
+            m_joc.baixaFigura();
+            m_temps = 0.0;
+        }
+
+    }
+    else {
+        // Agument de nivell -> Velocitat
+
+
+        // Temps
+
+    }
+    m_puntuacio;
+
+
+
+
+    // Pantalla
     GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
     GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER, false);
+
+    // Figures
+
+
+    // Nivell i puntució actual
+    string msg = "Nivel: " + to_string(m_nivell) + ",   Puntuació: " + to_string(m_puntuacio);
+    GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, msg);
 
 }
 
@@ -26,19 +97,21 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
         
         m_joc.inicialitza(mode, fitxerInicial);
 
-        LlistaFigures llistaFigures;
-        LlistaMoviments llistaMoviments;
+        if (mode == 1) {
+            LlistaFigures llistaFigures;
+            LlistaMoviments llistaMoviments;
 
-        while (!fileFigures.eof() && (fileFigures.is_open())) {
-            int figura, fila, columna, gir;
-            fileFigures >> figura >> fila >> columna >> gir;
-            llistaFigures.afegirFigura(figura, fila, columna, gir);
-        }
+            while (!fileFigures.eof() && (fileFigures.is_open())) {
+                int figura, fila, columna, gir;
+                fileFigures >> figura >> fila >> columna >> gir;
+                llistaFigures.afegirFigura(figura, fila, columna, gir);
+            }
 
-        while (!fileMoviments.eof() && (fileMoviments.is_open())) {
-            int moviment;
-            fileMoviments >> moviment;
-            llistaMoviments.afegirMoviment(moviment);
+            while (!fileMoviments.eof() && (fileMoviments.is_open())) {
+                int moviment;
+                fileMoviments >> moviment;
+                llistaMoviments.afegirMoviment(moviment);
+            }
         }
     }
     else {
