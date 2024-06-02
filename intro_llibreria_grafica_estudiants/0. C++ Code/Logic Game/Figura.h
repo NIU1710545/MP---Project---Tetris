@@ -47,6 +47,9 @@ public:
     void inicialitzarFigura(const string& nomFitxer);
     void girarFigura(int gir, int limit, int direccio);
     
+    void dibuixa();
+
+
     void setColor(int color);
     void setFigura(int figura);
     void setFila(int fila) { m_fila = fila; }
