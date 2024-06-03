@@ -7,6 +7,8 @@
 #include <string>
 #include "Partida.h"
 #include "fsrmscreen.h"
+#include <list>
+#include <string>
 
 
 using namespace std;
@@ -14,22 +16,27 @@ using namespace std;
 
 class Tetris {
 public:
-	Tetris() {}
+	Tetris() : opcioMenu(-1) {}
 	~Tetris();
 
-	int Menu();
-	void inicialitzar(int mode);
+	void Menu();
+	void inicialitzar(int mode, const string& fitxerInicial, const string& fitxerFigures,
+		const string& fitxerMoviments);
 
-	int juga(int mode);
+	void juga( int mode, double deltaTime, Screen pantalla);
 	void mostraPuntuacions();
+
+	int getMode() const { return opcioMenu; }
+
+	void guardaPuntuacions();
+	void afegirPuntuacio(const string& nomUusuari, const string& nivell, int puntacio);
 
 private:
 	Partida m_partida;
 	int opcioMenu;
+	list <tuple <string, string, int>> puntuacions_;
 
-	string fitxerPartidaTest = "./data/Games/partida.txt";
-	string fitxerFiguresTest = "./data/Games/figures.txt";
-	string fitxerMovimentsTest = ".data/Games/moviments.txt";
+
 
 };
 

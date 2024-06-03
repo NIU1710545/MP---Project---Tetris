@@ -1,6 +1,6 @@
 #include "Joc.h"
 
-void Joc::inicialitza(const string& nomFitxer, int mode)
+void Joc::inicialitza(const string& nomFitxer)
 {
 	m_figura.inicialitzarFigura(nomFitxer);
 	m_tauler.inicialitzarTauler(nomFitxer);
@@ -8,7 +8,7 @@ void Joc::inicialitza(const string& nomFitxer, int mode)
 
 void Joc::dibuixa()
 {
-	m_tauler.dibuixa();
+	//m_tauler.dibuixa();
 	m_figura.dibuixa();
 }
 
@@ -16,6 +16,7 @@ void Joc::novaFigura()
 {
 
 }
+
  // Baixa de cop la figura fins col·locar-la
 void Joc::baixaFiguraCop()
 {

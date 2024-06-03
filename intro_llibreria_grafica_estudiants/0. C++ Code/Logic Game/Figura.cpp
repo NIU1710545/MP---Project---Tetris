@@ -15,39 +15,48 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 	}
 }
 
+
+
 void Figura::dibuixa()
 {
 	GraphicManager* gManager = GraphicManager::getInstance();
 
-	for (int i = 0; i < getLimit(); i++) { 
-		for (int j = 0; j < getLimit(); j++) {
-			
+
+	for (int i = 0; i <= getLimit(); i++) {
+		for (int j = 0; j <= getLimit(); j++) {
+
 			if (m_forma[i][j] != 0) {
 				int color = getColor();
 				switch (color) {
-				case COLOR_NEGRE:
-					break;
 				case COLOR_GROC:
-					gManager->drawSprite(GRAFIC_QUADRAT_GROC, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_GROC,
+						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_BLAUCEL:
-					gManager->drawSprite(GRAFIC_QUADRAT_BLAUCEL, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_BLAUCEL,
+						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_MAGENTA:
-					gManager->drawSprite(GRAFIC_QUADRAT_MAGENTA, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_GROC,
+						POS_X_TAULER + ((m_columna+ j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila+i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_TARONJA:
-					gManager->drawSprite(GRAFIC_QUADRAT_TARONJA, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_TARONJA,
+						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_BLAUFOSC:
-					gManager->drawSprite(GRAFIC_QUADRAT_BLAUFOSC, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_BLAUFOSC,
+						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_VERMELL:
-					gManager->drawSprite(GRAFIC_QUADRAT_VERMELL, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_VERMELL,
+						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_VERD:
-					gManager->drawSprite(GRAFIC_QUADRAT_VERD, POS_X_TAULER + (m_columna + j) * MIDA_QUADRAT, POS_Y_TAULER + (m_fila + i) * MIDA_QUADRAT, false);
+					gManager->drawSprite(GRAFIC_QUADRAT_VERD,
+						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
+
 				}
 			}
 		}

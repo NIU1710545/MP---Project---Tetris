@@ -21,35 +21,36 @@ void Tauler::dibuixa()
 {
 	GraphicManager* gManager = GraphicManager::getInstance();
 
-	for (int i = 0; i < MAX_FILA; i++) {
-		for (int j = 0; j < MAX_COL; j++) {
+	for (int i = 0; i <= MAX_FILA; i++) {
+		for (int j = 0; j <= MAX_COL; j++) {
 			
-			int color = m_tauler[i][j];
+			int color = getCasellaRef(i, j);
+			int posX = POS_X_TAULER + j * MIDA_QUADRAT;
+			int posY = POS_Y_TAULER + i * MIDA_QUADRAT;
+			
 			switch (color) {
 			case COLOR_NEGRE:
 				break;
 			case COLOR_GROC:
-				gManager->drawSprite(GRAFIC_QUADRAT_GROC, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
+				gManager->drawSprite(GRAFIC_QUADRAT_GROC, posX, posY, false);
 				break;
 			case COLOR_BLAUCEL:
-				gManager->drawSprite(GRAFIC_QUADRAT_BLAUCEL, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
+				gManager->drawSprite(GRAFIC_QUADRAT_BLAUCEL, posX, posY, false);
 				break;
 			case COLOR_MAGENTA:
-				gManager->drawSprite(GRAFIC_QUADRAT_MAGENTA, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
+				gManager->drawSprite(GRAFIC_QUADRAT_MAGENTA, posX, posY, false);
 				break;
 			case COLOR_TARONJA:
-				gManager->drawSprite(GRAFIC_QUADRAT_TARONJA, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
+				gManager->drawSprite(GRAFIC_QUADRAT_TARONJA, posX, posY, false);
 				break;
 			case COLOR_BLAUFOSC:
-				gManager->drawSprite(GRAFIC_QUADRAT_BLAUFOSC, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
+				gManager->drawSprite(GRAFIC_QUADRAT_BLAUFOSC, posX, posY, false);
 				break;
 			case COLOR_VERMELL:
-				gManager->drawSprite(GRAFIC_QUADRAT_VERMELL, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
+				gManager->drawSprite(GRAFIC_QUADRAT_VERMELL, posX, posY, false);
 				break;
 			case COLOR_VERD:
-				gManager->drawSprite(GRAFIC_QUADRAT_VERD, POS_X_TAULER + (j * MIDA_QUADRAT), POS_Y_TAULER + (i - 1) * MIDA_QUADRAT, false);
-				break;
-			default:
+				gManager->drawSprite(GRAFIC_QUADRAT_VERD, posX, posY, false);
 				break;
 			}
 		}

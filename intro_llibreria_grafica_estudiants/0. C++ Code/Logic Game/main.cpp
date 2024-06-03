@@ -29,6 +29,8 @@
 #include "./Partida.h"
 #include "./InfoJoc.h"
 #include "./Tetris.h"
+#include "./Joc.h"
+#include "fsrmscreen.h"
 
 
 int main(int argc, const char* argv[])
@@ -42,39 +44,58 @@ int main(int argc, const char* argv[])
     //Mostrem la finestra grafica
     pantalla.show();
 
-    Tetris tetris;
-
-    // CODI PER LA GESTIÓ DEL MENÚ I DE LES OPCIONS DEL JOC
-    
-    tetris.juga(tetris.Menu());
-
     Uint64 NOW = SDL_GetPerformanceCounter();
     Uint64 LAST = 0;
     double deltaTime = 0;
 
-    // NS
-    do
-    {
-        LAST = NOW;
-        NOW = SDL_GetPerformanceCounter();
-        deltaTime = (double)((NOW - LAST) / (double)SDL_GetPerformanceFrequency());
-
-        // Captura tots els events de ratolí i teclat de l'ultim cicle
-        pantalla.processEvents();
-
-        //tetris.actualitza(deltaTime);
-
-        // Actualitza la pantalla
-        pantalla.update();
-
-    } while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
-    // Sortim del bucle si pressionem ESC
-
-    //Instruccio necesaria per alliberar els recursos de la llibreria 
-    SDL_Quit();
+    string fitxerPartida = "./data/Games/partida.txt";
+    string fitxerFiguresTest = "./data/Games/figures.txt";
+    string fitxerMovimentsTest = "./data/Games/moviments.txt";
 
 
+    // CODI PER LA GESTIÓ DEL MENÚ I DE LES OPCIONS DEL JOC
+
+    Tetris tetris;
+
+    do {
+        tetris.Menu();
+        tetris.inicialitzar(tetris.getMode(), fitxerPartida, fitxerFiguresTest, fitxerMovimentsTest);
+
+        switch (tetris.getMode()) {
+        case 1: case 2:
+
+            do
+            {
+                LAST = NOW;
+                NOW = SDL_GetPerformanceCounter();
+                deltaTime = (double)((NOW - LAST) / (double)SDL_GetPerformanceFrequency());
+
+                // Captura tots els events de ratolí i teclat de l'ultim cicle
+                pantalla.processEvents();
+
+                tetris.juga(tetris.getMode(), deltaTime, pantalla);
+
+            } while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
+            // Sortim del bucle si pressionem ESC
+
+            //Instruccio necesaria per alliberar els recursos de la llibreria 
+            SDL_Quit();
+
+            break;
+        case 3:
+            tetris.mostraPuntuacions();
+            break;
+        case 4:
+            break;
+        default:
+            cout << "ERROR. Menu" << endl;
+            break;
+        }
+        
+
+    } while (tetris.getMode() == 4);
 
 
+    return 0;
 }
 

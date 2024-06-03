@@ -11,7 +11,7 @@ class Joc
 public:
 	Joc() {}
 
-	void inicialitza(const string& nomFitxer, int mode);
+	void inicialitza(const string& nomFitxer);
 	bool giraFigura(DireccioGir direccio);
 	bool mouFigura(int dirX);
 	int baixaFigura();
@@ -21,6 +21,7 @@ public:
 	void novaFigura();
 	void baixaFiguraCop();
 
+	int getfilesCompletes() { return filesCompletes; }
 
 private:
 	Tauler m_tauler;

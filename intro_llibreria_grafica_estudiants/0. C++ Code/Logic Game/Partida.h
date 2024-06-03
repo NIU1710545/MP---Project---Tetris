@@ -15,16 +15,17 @@ const int MAX_FIGURES = 7;
 class Partida 
 {
 public:
-    Partida() : m_puntuacio(0), m_nivell(1) {}
+    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20) {}
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);
     void actualitza(int mode, double deltaTime);
 
-
+    bool finalitzarPartida();
 
 private:
     double m_temps;
+    float m_tempsVelocitat;
     Joc m_joc;
     int m_puntuacio;
     int m_nivell;

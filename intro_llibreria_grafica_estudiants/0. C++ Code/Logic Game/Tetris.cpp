@@ -10,7 +10,7 @@ Tetris::~Tetris()
 
 }
 
-int Tetris::Menu()
+void Tetris::Menu()
 {
 	cout << "MENU PRINCIPAL" << endl;
 	cout << "======================" << endl;
@@ -20,33 +20,26 @@ int Tetris::Menu()
 	cout << "4. Sortir" << endl;
 	cout << endl;
 	cout << "Eleccio: ";
-	cin >> opcioMenu;
-	return opcioMenu;
+	opcioMenu = 2;
+	cout << endl;
 }
 
 
-void Tetris::inicialitzar(int mode)
+void Tetris::inicialitzar(int mode, const string& fitxerInicial, const string& fitxerFigures,
+	const string& fitxerMoviments)
 {
-	switch (mode)
-	{
-	case 1: case 2:
-		m_partida.inicialitza(mode, fitxerPartidaTest, fitxerFiguresTest, fitxerMovimentsTest);
-		break;
-	case 3:
-		mostraPuntuacions();
-		break;
-	case 4:
-		break;
-	default:
-		cout << "ERROR. Menu" << endl;
-		break;
+	m_partida.inicialitza(mode, fitxerInicial, fitxerFigures, fitxerMoviments);
+}
+
+
+void Tetris::juga(int mode, double deltaTime, Screen pantalla)
+{
+	
+	while (!m_partida.finalitzarPartida()) {
+		m_partida.actualitza(mode, deltaTime);
+		pantalla.update();
 	}
-}
-
-
-int Tetris::juga(int mode)
-{
-	inicialitzar(mode);
+	
 }
 
 
@@ -55,21 +48,29 @@ int Tetris::juga(int mode)
 // Nom a registrar - Nivell i Puntuació final
 void Tetris::mostraPuntuacions()
 {
-	ifstream fitxerPuntuacio("Puntuacions.txt");
-	if (!fitxerPuntuacio.is_open()) {
-		cout << "ERROR. Lectura" << endl;
+	for (const auto& puntuacio : puntuacions_) {
+		std::string missatge = "Usuari: " + std::get<0>(puntuacio) + " Nivel: " + std::get<1>(puntuacio) + ",   Puntuacio: " + std::to_string(std::get<2>(puntuacio));
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatge);
+	}
+
+}
+
+
+void Tetris::guardaPuntuacions() 
+{
+	ofstream fitxerPuntuacio("Puntuacions.txt");
+	if (!fitxerPuntuacio.is_open()){
+		cout << "ERROR. Guarda Puntuacions";
 		return;
 	}
 
-	while (!fitxerPuntuacio.eof() && (fitxerPuntuacio.is_open())) {
-
-		string nomUsuari, nivell, puntuacio;
-
-		fitxerPuntuacio >> nomUsuari >> nivell >> puntuacio;
-
-		string missatge = "Usuari: "+ nomUsuari + "Nivel: " + nivell + ",   Puntuació: " + puntuacio;
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatge);
-		
+	for (const auto& puntuacio : puntuacions_) {
+		fitxerPuntuacio << get<0>(puntuacio) << " " << get<1>(puntuacio) << " " << get<2>(puntuacio) << std::endl;
 	}
+}
 
+void Tetris::afegirPuntuacio(const std::string& nomUsuari, const std::string& nivell, int puntuacio) 
+{
+	puntuacions_.emplace_back(nomUsuari, nivell, puntuacio);
+	puntuacions_.sort([](const auto& a, const auto& b) { return std::get<2>(a) > std::get<2>(b); });
 }

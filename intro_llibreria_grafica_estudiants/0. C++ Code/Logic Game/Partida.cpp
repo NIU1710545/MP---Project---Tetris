@@ -45,12 +45,10 @@ void Partida::actualitza(int mode, double deltaTime)
             m_joc.baixaFiguraCop();
         case TECLA_ESCAPE:
             break;
-        default:
-            cout << "ERROR. Tecles" << endl;
         }
 
         m_temps += deltaTime;
-        if (m_temps > 0.5) {
+        if (m_temps > m_tempsVelocitat) {
             m_joc.baixaFigura();
             m_temps = 0.0;
         }
@@ -58,13 +56,10 @@ void Partida::actualitza(int mode, double deltaTime)
     }
     else {
 
-        m_temps += deltaTime;
-        if (m_temps > 0.5) {
-            m_joc.baixaFigura();
-            m_temps = 0.0;
-        }
+
+
+
     }
-    m_puntuacio;
 
     // Pantalla
     GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
@@ -73,53 +68,80 @@ void Partida::actualitza(int mode, double deltaTime)
     // Figures
     m_joc.dibuixa();
 
+    // Actualització puntuació
+    int filesCompletes = m_joc.getfilesCompletes();
+    if (filesCompletes > 0) {
+        m_puntuacio += 100 * filesCompletes;
+        switch (filesCompletes) {
+        case 1:
+            break;
+        case 2:
+            m_puntuacio += 50;
+            break;
+        case 3:
+            m_puntuacio += 70;
+            break;
+        case 4:
+            m_puntuacio += 100;
+            break;
+        }
+    }
+
+    // Actualització nivell i velocitat
+
+    if (m_puntuacio >= m_nivell * 1000) {
+        m_nivell++;
+        m_tempsVelocitat -= 0.1;
+    }
+
+    m_temps += deltaTime;
+    if (m_temps > m_tempsVelocitat) {
+        m_joc.baixaFigura();
+        m_temps = 0.0;
+    }
+    
     // Nivell i puntució actual
     string msg = "Nivel: " + to_string(m_nivell) + ",   Puntuació: " + to_string(m_puntuacio);
     GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, msg);
-
 
 }
 
 void Partida::inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
     const string& fitxerMoviments)
 {   
-    ifstream fileFigures(fitxerFigures);
-    ifstream fileMoviments(fitxerMoviments);
-    if (fileFigures.is_open() && (fileMoviments.is_open())) {
-        
-        m_joc.inicialitza(fitxerInicial, mode);
+    if (mode == 2) {
 
-        if (mode == 2) {
+        ifstream fileFigures;
+        ifstream fileMoviments(fitxerMoviments);
+        fileFigures.open(fitxerFigures);
+
+        if (!fileFigures.is_open() || (!fileMoviments.is_open())) {
+            cout << "ERROR. Inicialitzar Partida" << endl;
+        }
+        else {
+
+            m_joc.inicialitza(fitxerInicial);
             LlistaFigures llistaFigures;
             LlistaMoviments llistaMoviments;
 
-            while (!fileFigures.eof() && (fileFigures.is_open())) {
-                int figura, fila, columna, gir;
-                fileFigures >> figura >> fila >> columna >> gir;
+            int figura, fila, columna, gir;
+            int moviment;
+
+            while (fileFigures >> figura >> fila >> columna >> gir) {
                 llistaFigures.afegirFigura(figura, fila, columna, gir);
             }
 
-            while (!fileMoviments.eof() && (fileMoviments.is_open())) {
-                int moviment;
-                fileMoviments >> moviment;
+            while (fileMoviments >> moviment) {
                 llistaMoviments.afegirMoviment(moviment);
             }
         }
     }
-    else {
-        cout << "ERROR. Inicialitzar Partida";
-    }
 }
 
-
-
-
-/* Accedir als continguts dels documents
-llistaFigures.imprimirLlista();
-llistaMoviments.imprimirLlista();
-*/
-
-
+bool Partida::finalitzarPartida()
+{
+    return false;
+}
 
 
 
