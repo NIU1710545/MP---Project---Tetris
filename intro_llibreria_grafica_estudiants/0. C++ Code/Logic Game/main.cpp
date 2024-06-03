@@ -45,12 +45,14 @@ int main(int argc, const char* argv[])
     Tetris tetris;
 
     // CODI PER LA GESTIÓ DEL MENÚ I DE LES OPCIONS DEL JOC
-    int punts = -1;
-    punts = tetris.juga(pantalla);
+    
+    tetris.juga(tetris.Menu());
 
     Uint64 NOW = SDL_GetPerformanceCounter();
     Uint64 LAST = 0;
     double deltaTime = 0;
+
+    // NS
     do
     {
         LAST = NOW;
@@ -70,6 +72,9 @@ int main(int argc, const char* argv[])
 
     //Instruccio necesaria per alliberar els recursos de la llibreria 
     SDL_Quit();
-    return 0;
+
+
+
+
 }
 

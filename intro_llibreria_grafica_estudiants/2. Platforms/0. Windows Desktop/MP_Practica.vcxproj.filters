@@ -52,10 +52,10 @@
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Tetris.cpp">
       <Filter>Logic Game\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="NodeFigura.cpp">
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\NodeFigura.cpp">
       <Filter>Logic Game\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="NodeMoviment.cpp">
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\NodeMoviment.cpp">
       <Filter>Logic Game\Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,10 +123,10 @@
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Tetris.h">
       <Filter>Logic Game\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="NodeFigura .h">
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\NodeMoviment.h">
       <Filter>Logic Game\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="NodeMoviment.h">
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\NodeFigura.h">
       <Filter>Logic Game\Header files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -151,7 +151,7 @@
     <Text Include="..\..\0. C++ Code\Logic Game\FormaFigures.txt">
       <Filter>Logic Game\Source files</Filter>
     </Text>
-    <Text Include="Puntuacions.txt">
+    <Text Include="..\..\0. C++ Code\Logic Game\Puntuacions.txt">
       <Filter>Logic Game\Source files</Filter>
     </Text>
   </ItemGroup>

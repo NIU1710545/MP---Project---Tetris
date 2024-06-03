@@ -1,15 +1,9 @@
 #include "Partida.h"
 #include "InfoJoc.h"
-#include "GraphicManager.h"
-#include "Joc.h"
-#include "NodeFigura .h"
-#include "NodeMoviment.h"
 #include "SDL_keyboard.h"
+#include "NodeFigura.h"
+#include "NodeMoviment.h"
 
-
-Partida::Partida()
-{
-}
 
 
 void Partida::actualitza(int mode, double deltaTime)
@@ -63,30 +57,28 @@ void Partida::actualitza(int mode, double deltaTime)
 
     }
     else {
-        // Agument de nivell -> Velocitat
 
-
-        // Temps
-
+        m_temps += deltaTime;
+        if (m_temps > 0.5) {
+            m_joc.baixaFigura();
+            m_temps = 0.0;
+        }
     }
     m_puntuacio;
-
-
-
 
     // Pantalla
     GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
     GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER, false);
 
     // Figures
-
+    m_joc.dibuixa();
 
     // Nivell i puntució actual
     string msg = "Nivel: " + to_string(m_nivell) + ",   Puntuació: " + to_string(m_puntuacio);
     GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, msg);
 
-}
 
+}
 
 void Partida::inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
     const string& fitxerMoviments)
@@ -95,9 +87,9 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
     ifstream fileMoviments(fitxerMoviments);
     if (fileFigures.is_open() && (fileMoviments.is_open())) {
         
-        m_joc.inicialitza(mode, fitxerInicial);
+        m_joc.inicialitza(fitxerInicial, mode);
 
-        if (mode == 1) {
+        if (mode == 2) {
             LlistaFigures llistaFigures;
             LlistaMoviments llistaMoviments;
 
@@ -119,10 +111,18 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
     }
 }
 
+
+
+
 /* Accedir als continguts dels documents
 llistaFigures.imprimirLlista();
 llistaMoviments.imprimirLlista();
 */
+
+
+
+
+
 
 /*
 void Partida::actualitza(double deltaTime)

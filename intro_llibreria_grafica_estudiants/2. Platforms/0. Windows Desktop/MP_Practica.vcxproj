@@ -160,13 +160,13 @@
     <ClCompile Include="..\..\0. C++ Code\Graphic Lib\video.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Figura.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Joc.cpp" />
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\NodeFigura.cpp" />
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\NodeMoviment.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Partida.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\GraphicManager.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\main.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Tauler.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Tetris.cpp" />
-    <ClCompile Include="NodeFigura.cpp" />
-    <ClCompile Include="NodeMoviment.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\0. C++ Code\Graphic Lib\debug.h" />
@@ -185,17 +185,17 @@
     <ClInclude Include="..\..\0. C++ Code\Graphic Lib\video.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Figura.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Joc.h" />
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\NodeFigura.h" />
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\NodeMoviment.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Partida.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\InfoJoc.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\GraphicManager.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Tauler.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Tetris.h" />
-    <ClInclude Include="NodeFigura.h" />
-    <ClInclude Include="NodeMoviment.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\0. C++ Code\Logic Game\FormaFigures.txt" />
-    <Text Include="Puntuacions.txt" />
+    <Text Include="..\..\0. C++ Code\Logic Game\Puntuacions.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

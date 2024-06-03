@@ -8,6 +8,7 @@
 #include "Partida.h"
 #include "fsrmscreen.h"
 
+
 using namespace std;
 
 
@@ -16,12 +17,20 @@ public:
 	Tetris() {}
 	~Tetris();
 
-	int juga(Screen & pantalla);
+	int Menu();
+	void inicialitzar(int mode);
+
+	int juga(int mode);
 	void mostraPuntuacions();
 
 private:
 	Partida m_partida;
 	int opcioMenu;
+
+	string fitxerPartidaTest = "./data/Games/partida.txt";
+	string fitxerFiguresTest = "./data/Games/figures.txt";
+	string fitxerMovimentsTest = ".data/Games/moviments.txt";
+
 };
 
 #endif 

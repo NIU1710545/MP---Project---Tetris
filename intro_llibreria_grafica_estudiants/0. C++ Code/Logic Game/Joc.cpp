@@ -4,11 +4,6 @@ void Joc::inicialitza(const string& nomFitxer, int mode)
 {
 	m_figura.inicialitzarFigura(nomFitxer);
 	m_tauler.inicialitzarTauler(nomFitxer);
-
-	if (nomFitxer == "test.txt") {
-			
-	}
-
 }
 
 void Joc::dibuixa()

@@ -5,28 +5,30 @@
 #include <string>
 #include <fstream>
 #include "Joc.h"
+#include "GraphicManager.h"
 
 using namespace std;
 
 
 const int MAX_FIGURES = 7;
-const int SEQ_MOV = 11;
 
 class Partida 
 {
 public:
-    Partida() : m_puntuacio(0), m_nivell(1), m_modeTest(false) {}
+    Partida() : m_puntuacio(0), m_nivell(1) {}
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);
     void actualitza(int mode, double deltaTime);
+
+
 
 private:
     double m_temps;
     Joc m_joc;
     int m_puntuacio;
     int m_nivell;
-    bool m_modeTest;
+    int numFigura[MAX_FIGURES];
 
 };
 
