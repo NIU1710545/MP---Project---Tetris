@@ -20,9 +20,10 @@ void Joc::novaFigura()
  // Baixa de cop la figura fins col·locar-la
 void Joc::baixaFiguraCop()
 {
-	while (m_tauler.colisions(m_figura, m_figura.getFila() + 1, m_figura.getColumna())) {
+	while (!m_tauler.colisions(m_figura, m_figura.getFila() + 1, m_figura.getColumna())) {
 		m_tauler.baixarFigura(m_figura);
 	}
+	colocada = true;
 }
 
 

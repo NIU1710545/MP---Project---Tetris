@@ -5,6 +5,14 @@
 #include "NodeMoviment.h"
 
 
+bool Partida::finalitzarFigura()
+{
+    if (m_joc.getColocada()) {
+        figuraColocada = true;
+        m_nFigura++;
+    }
+}
+
 bool Partida::finalitzarPartida()
 {
     return false;
@@ -67,23 +75,22 @@ void Partida::actualitza(int mode, double deltaTime)
     else {
 
         switch (m_moviments[0]) {
+        case 0:
+            m_joc.mouFigura(-1);
+            break;
         case 1:
-            m_joc.giraFigura(GIR_HORARI);
+            m_joc.mouFigura(1);
             break;
         case 2:
-            m_joc.giraFigura(GIR_ANTI_HORARI);
+            m_joc.giraFigura(GIR_HORARI);
             break;
         case 3:
+            m_joc.giraFigura(GIR_ANTI_HORARI);
             break;
         case 4:
-            break;
-        case 5:
             m_joc.baixaFiguraCop();
             break;
-        case 6:
-            break;
-        default:
-            cout << "ERROR. Llista" << endl;
+        case 5:
             break;
         }
         eliminarMoviment();
@@ -164,7 +171,7 @@ void Partida::actualitza(int mode, double deltaTime)
     }
     
     // Nivell i puntució actual
-    string msg = "Nivel: " + to_string(m_nivell) + ",   Puntuació: " + to_string(m_puntuacio);
+    string msg = "Nivel: " + to_string(m_nivell) + ",   Puntuacio: " + to_string(m_puntuacio);
     GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, msg);
 
 }
@@ -189,9 +196,9 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
             int figura, fila, columna, gir;
             int moviment;
 
-            while (fileFigures >> figura >> fila >> columna >> gir) {
-                llistaFigures.afegirFigura(figura, fila, columna, gir);
-            }
+            int i = 0;
+            while (fileFigures >> figura >> fila >> columna >> gir);
+
 
             int i = 0;
             while (fileMoviments >> moviment) {
@@ -201,6 +208,9 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
 
 
             /*
+             while (fileFigures >> figura >> fila >> columna >> gir) {
+                llistaFigures.afegirFigura(figura, fila, columna, gir);
+            }
             while (fileMoviments >> moviment) {
                 llistaMoviments.afegirMoviment(moviment);
             }
@@ -215,6 +225,9 @@ void Partida::eliminarMoviment()
     for (int i = 0; i < 11; i++) {
         if (m_moviments[i] != -1) {
             m_moviments[i] = m_moviments[i + 1];
+        }
+        if (i == 10) {
+            m_moviments[i] = -1;
         }
         
     }

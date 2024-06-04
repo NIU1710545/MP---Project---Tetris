@@ -21,13 +21,15 @@ public:
 	void novaFigura();
 	void baixaFiguraCop();
 
-	int getfilesCompletes() { return filesCompletes; }
+	int getfilesCompletes() const { return filesCompletes; }
+	bool getColocada() const { return colocada; }
 
 private:
 	Tauler m_tauler;
 	Figura m_figura;
 	int puntuacio = 0;
 	int filesCompletes = 0;
+	bool colocada = false;
 
 	void colocaFigura(int nfigura);
 	int determinarFigura(int figura);

@@ -37,7 +37,7 @@ void Figura::dibuixa()
 						POS_X_TAULER + ((m_columna + j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila + i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_MAGENTA:
-					gManager->drawSprite(GRAFIC_QUADRAT_GROC,
+					gManager->drawSprite(GRAFIC_QUADRAT_MAGENTA,
 						POS_X_TAULER + ((m_columna+ j) * MIDA_QUADRAT), POS_Y_TAULER + ((m_fila+i - 1) * MIDA_QUADRAT), false);
 					break;
 				case COLOR_TARONJA:

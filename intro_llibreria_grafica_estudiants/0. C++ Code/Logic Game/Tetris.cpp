@@ -35,10 +35,12 @@ void Tetris::inicialitzar(int mode, const string& fitxerInicial, const string& f
 
 void Tetris::juga(int mode, double deltaTime, Screen pantalla)
 {
-	
 	while (!m_partida.finalitzarPartida()) {
-		m_partida.actualitza(mode, deltaTime);
-		pantalla.update();
+		while (!m_partida.finalitzarFigura()) {
+			m_partida.actualitza(mode, deltaTime);
+			pantalla.update();
+		}
+
 	}
 	
 }

@@ -161,7 +161,6 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 				default:
 					cout << "ERROR" << endl;
 				}
-
 			}
 		}
 	}

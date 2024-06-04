@@ -21,6 +21,7 @@ public:
         const string& fitxerMoviments);
     void actualitza(int mode, double deltaTime);
 
+    bool finalitzarFigura();
     bool finalitzarPartida();
 
 private:
@@ -29,8 +30,11 @@ private:
     Joc m_joc;
     int m_puntuacio;
     int m_nivell;
+    int m_nFigura = 0;
     int numFigura[MAX_FIGURES]{};
     int m_moviments[11]{};
+
+    bool figuraColocada = false;;
 
     void eliminarMoviment();
 
