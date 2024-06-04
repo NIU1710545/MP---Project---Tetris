@@ -1,4 +1,5 @@
 #include "Partida.h"
+#include "Figura.h"
 #include "InfoJoc.h"
 #include "SDL_keyboard.h"
 #include "NodeFigura.h"
@@ -11,6 +12,7 @@ bool Partida::finalitzarFigura()
         figuraColocada = true;
         m_nFigura++;
     }
+    return true;
 }
 
 bool Partida::finalitzarPartida()
@@ -18,6 +20,82 @@ bool Partida::finalitzarPartida()
     return false;
 }
 
+
+void Partida::inicialitzarNovaFigura()
+{
+
+    Figura novaFigura;
+
+    int figura, fila, columna, gir;
+
+    figura = numFigura[0][m_nFigura];
+    fila = numFigura[1][m_nFigura];
+    columna = numFigura[2][m_nFigura];
+    gir = numFigura[3][m_nFigura];
+
+    novaFigura.setFila(fila);
+    novaFigura.setColumna(columna);
+
+    int Parts[7][4][4]
+    {
+        {
+            { 1, 1, 0, 0 },
+            { 1, 1, 0, 0 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        },
+        {
+            { 0, 0, 0, 0 },
+            { 2, 2, 2, 2 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        },
+        {
+            { 0, 3, 0, 0 },
+            { 3, 3, 3, 0 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        },
+        {
+            { 0, 0, 4, 0 },
+            { 4, 4, 4, 0 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        },
+        {
+            { 5, 0, 0, 0 },
+            { 5, 5, 5, 0 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        },
+        {
+            { 6, 6, 0, 0 },
+            { 0, 6, 6, 0 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        },
+        {
+            { 0, 7, 7, 0 },
+            { 7, 7, 0, 0 },
+            { 0, 0, 0, 0 },
+            { 0, 0, 0, 0 },
+        }
+
+    };
+
+
+    novaFigura.determinarLimit(novaFigura.getLimit());
+
+    for (int j = 0; j < MAX_ALCADA; j++) {
+        for (int k = 0; k < MAX_AMPLADA; k++) {
+            novaFigura.setForma(j, k, Parts[figura - 1][j][k]);
+        }
+    }
+
+    novaFigura.setColor(figura);
+    novaFigura.setFigura(figura);
+    novaFigura.girarFigura(gir, novaFigura.getLimit(), 0);
+}
 
 
 void Partida::actualitza(int mode, double deltaTime)
@@ -190,15 +268,16 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
         else {
 
             m_joc.inicialitza(fitxerInicial);
-            LlistaFigures llistaFigures;
-            LlistaMoviments llistaMoviments;
 
-            int figura, fila, columna, gir;
+            int figura[4]{};
             int moviment;
-
-            int i = 0;
-            while (fileFigures >> figura >> fila >> columna >> gir);
-
+            int k = 0;
+            while (fileFigures >> figura[4])
+            {
+                for (int j = 0; j < 4; j++) {
+                    numFigura[k][j] = figura[j];
+                }
+            }
 
             int i = 0;
             while (fileMoviments >> moviment) {

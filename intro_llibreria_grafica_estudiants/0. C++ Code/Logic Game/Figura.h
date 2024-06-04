@@ -48,12 +48,13 @@ public:
     void girarFigura(int gir, int limit, int direccio);
     
     void dibuixa();
-
+    int determinarLimit(int figura);
 
     void setColor(int color);
     void setFigura(int figura);
     void setFila(int fila) { m_fila = fila; }
     void setColumna(int columna) { m_columna = columna; }
+    void setForma(int i, int j, int num) { m_forma[i][j] = num; }
 
     ColorFigura getColor() const { return m_color; }
     TipusFigura getFigura() const { return m_figura; }
@@ -72,7 +73,6 @@ private:
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
     int posicio4x4 = 0;
 
-    int determinarLimit(int figura);
 };
 #endif
 

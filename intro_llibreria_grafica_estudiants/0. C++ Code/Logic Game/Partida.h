@@ -23,6 +23,8 @@ public:
 
     bool finalitzarFigura();
     bool finalitzarPartida();
+    void inicialitzarNovaFigura();    
+    int determinarLimit(int figura);
 
 private:
     double m_temps;
@@ -31,7 +33,7 @@ private:
     int m_puntuacio;
     int m_nivell;
     int m_nFigura = 0;
-    int numFigura[MAX_FIGURES]{};
+    int numFigura[4][MAX_FIGURES]{};
     int m_moviments[11]{};
 
     bool figuraColocada = false;;

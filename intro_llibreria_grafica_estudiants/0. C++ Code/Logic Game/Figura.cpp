@@ -186,6 +186,8 @@ void Figura::girarFigura(int gir, int limit, int direccio)
 	}
 }
 
+
+
 void Figura::inicialitzarFigura(const string& nomFitxer)
 {
 

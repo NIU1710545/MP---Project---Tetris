@@ -21,6 +21,7 @@ public:
 	void novaFigura();
 	void baixaFiguraCop();
 
+
 	int getfilesCompletes() const { return filesCompletes; }
 	bool getColocada() const { return colocada; }
 

@@ -40,6 +40,7 @@ void Tetris::juga(int mode, double deltaTime, Screen pantalla)
 			m_partida.actualitza(mode, deltaTime);
 			pantalla.update();
 		}
+		m_partida.inicialitzarNovaFigura();
 
 	}
 	

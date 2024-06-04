@@ -6,6 +6,9 @@ void Joc::inicialitza(const string& nomFitxer)
 	m_tauler.inicialitzarTauler(nomFitxer);
 }
 
+
+
+
 void Joc::dibuixa()
 {
 	m_tauler.dibuixa();

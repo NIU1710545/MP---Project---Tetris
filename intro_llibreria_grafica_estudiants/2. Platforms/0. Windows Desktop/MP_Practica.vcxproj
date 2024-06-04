@@ -160,8 +160,6 @@
     <ClCompile Include="..\..\0. C++ Code\Graphic Lib\video.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Figura.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Joc.cpp" />
-    <ClCompile Include="..\..\0. C++ Code\Logic Game\NodeFigura.cpp" />
-    <ClCompile Include="..\..\0. C++ Code\Logic Game\NodeMoviment.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\Partida.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\GraphicManager.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\main.cpp" />
@@ -185,8 +183,6 @@
     <ClInclude Include="..\..\0. C++ Code\Graphic Lib\video.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Figura.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Joc.h" />
-    <ClInclude Include="..\..\0. C++ Code\Logic Game\NodeFigura.h" />
-    <ClInclude Include="..\..\0. C++ Code\Logic Game\NodeMoviment.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Partida.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\InfoJoc.h" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\GraphicManager.h" />
