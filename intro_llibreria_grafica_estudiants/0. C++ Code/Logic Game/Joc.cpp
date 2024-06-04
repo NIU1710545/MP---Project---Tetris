@@ -75,7 +75,6 @@ void Joc::baixaFiguraCop()
 	while (!m_tauler.colisions(m_figura, m_figura.getFila() + 1, m_figura.getColumna())) {
 		m_tauler.baixarFigura(m_figura);
 	}
-	colocada = true;
 }
 
 
@@ -123,6 +122,9 @@ int Joc::baixaFigura()
 	if (!m_tauler.colisions(m_figura, fila, m_figura.getColumna())) {
 		m_tauler.baixarFigura(m_figura);
 	}
+	else {
+		colocada = true;
+	}
 
 	return filesCompletes;
 }
@@ -145,7 +147,7 @@ void Joc::colocaFigura(int nfigura)
 			if (m_figura.getForma(i, j) != 0) {
 				switch (nfigura) {
 				case 2:
-					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i-1, columna + j-1), m_figura.getForma(i, j));
+					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i, columna + j-1), m_figura.getForma(i, j));
 					break;
 				case 3: case 4:
 					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));

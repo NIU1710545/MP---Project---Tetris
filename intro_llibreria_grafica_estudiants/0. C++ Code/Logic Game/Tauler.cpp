@@ -173,7 +173,7 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 			if (figura.getForma(i, j) != 0) {
 				switch (figura.getFigura()) {
 				case 1:
-					if (((fila + i >= MAX_FILA) || (fila + i < 0) || (columna + j -1>= MAX_COL) ||
+					if (((fila + i >= MAX_FILA) || (fila +i < 0) || (columna + j -1>= MAX_COL) ||
 						(columna + j-1) < 0) || (getCasella(fila + i, columna + j) != 0)) {
 						return true;
 					}
