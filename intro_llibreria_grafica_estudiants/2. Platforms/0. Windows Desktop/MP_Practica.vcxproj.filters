@@ -136,9 +136,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Puntuacions.txt" />
     <Text Include="FormaFigures.txt">
       <Filter>Logic Game\Source files</Filter>
+    </Text>
+    <Text Include="Puntuacions.txt">
+      <Filter>Logic Game</Filter>
     </Text>
   </ItemGroup>
 </Project>

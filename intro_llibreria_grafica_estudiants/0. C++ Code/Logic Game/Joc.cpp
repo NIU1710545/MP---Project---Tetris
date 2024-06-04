@@ -77,6 +77,14 @@ void Joc::baixaFiguraCop()
 	}
 }
 
+bool Joc::comprovaTaulerPle()
+{
+	for (int i = 0; i < N_COL_TAULER; i++) {
+		if (m_tauler.getCasellaRef(i, 0) != 0) {
+			return true;
+		}
+	}
+}
 
 bool Joc::giraFigura(DireccioGir direccio)
 {

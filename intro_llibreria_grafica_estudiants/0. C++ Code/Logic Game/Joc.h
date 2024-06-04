@@ -22,6 +22,7 @@ public:
 	void novaFigura();
 	void nouTauler(const string& nomFitxer);
 	void baixaFiguraCop();
+	bool comprovaTaulerPle();
 
 	void setColocada(bool resultat) { colocada = resultat; }
 

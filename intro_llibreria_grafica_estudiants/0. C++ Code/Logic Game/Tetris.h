@@ -29,9 +29,9 @@ public:
 
 	int getMode() const { return opcioMenu; }
 
-	void mostraPuntuacions();
-	void guardaPuntuacions();
-	void afegirPuntuacio(const string& nomUusuari, const string& nivell, int puntacio);
+	void mostraPuntuacions(const string& fitxer);
+	void guardaPuntuacions(const string& fitxer);
+	void afegirPuntuacio(const string& nomFitxer, const string nomUusuari, int nivell, int puntacio);
 
 private:
 	Partida m_partida;

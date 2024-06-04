@@ -32,6 +32,7 @@ public:
     bool getFinalPartida() const { return m_final; }
     int getmTemps() const { return m_temps; }
     int getPuntuacio() const { return m_puntuacio; }
+    int getNivell() const { return m_nivell; }
 
 private:
     double m_temps = 0;

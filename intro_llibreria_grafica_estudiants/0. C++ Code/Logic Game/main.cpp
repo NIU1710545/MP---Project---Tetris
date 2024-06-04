@@ -82,7 +82,7 @@ int main(int argc, const char* argv[])
 
             break;
         case 3:
-            tetris.mostraPuntuacions();
+            tetris.mostraPuntuacions("Puntuacions.txt");
             break;
         case 4:
             break;

@@ -49,9 +49,14 @@ bool Tetris::juga(int mode, double deltaTime)
 	}
 	else {
 		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
-		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER, false);
 		string missatgeFinal = "GAME OVER :(";
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatgeFinal);
+		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
+		string msgNom = "Introdueix el nom d'usuari, tot seguit sense espais: "; 
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatgeFinal);
+		string nomUsuari = " "; cin >> nomUsuari;
+		afegirPuntuacio("Puntuacions.txt", nomUsuari, m_partida.getNivell(), m_partida.getPuntuacio())
+
 	}
 	return m_partida.getFinalPartida();
 
@@ -60,49 +65,57 @@ bool Tetris::juga(int mode, double deltaTime)
 
 // Nom a registrar - Nivell i Puntuació final
 
-void Tetris::guardaPuntuacions()
+void Tetris::mostraPuntuacions(const string& fitxer)
 {
+	ifstream fitxerLlistaPuntuacions(fitxer);
 
-}
-
-void Tetris::afegirPuntuacio(const string& nomUusuari, const string& nivell, int puntacio)
-{
-
-}
-
-void Tetris::mostraPuntuacions()
-{
-
-}
-
-
-
-/*
-void Tetris::mostraPuntuacions()
-{
-	for (const auto& puntuacio : puntuacions_) {
-		string missatge = "Usuari: " + get<0>(puntuacio) + " Nivel: " + get<1>(puntuacio) + ",   Puntuacio: " + to_string(get<2>(puntuacio));
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatge);
-	}
-
-}
-
-void Tetris::guardaPuntuacions() 
-{
-	ofstream fitxerPuntuacio("Puntuacions.txt");
-	if (!fitxerPuntuacio.is_open()){
-		cout << "ERROR. Guarda Puntuacions";
+	if (!fitxerLlistaPuntuacions.is_open()) {
+		cout << "ERROR. Lectura Puntuacions";
 		return;
 	}
+	else {
+		string nomUsuari, nivell, puntuacio;
 
-	for (const auto& puntuacio : puntuacions_) {
-		fitxerPuntuacio << get<0>(puntuacio) << " " << get<1>(puntuacio) << " " << get<2>(puntuacio) << std::endl;
+		while (fitxerLlistaPuntuacions >> nomUsuari >> nivell >> puntuacio) {
+			cout << "Usuari: " + nomUsuari + ";   Nivell: " + nivell + ";  Puntuacio: " + puntuacio << endl;
+		}
+	
 	}
+
 }
 
-void Tetris::afegirPuntuacio(const string& nomUsuari, const string& nivell, int puntuacio) 
+void Tetris::afegirPuntuacio(const string& nomFitxer, const string nomUusuari, int nivell, int puntacio)
 {
-	puntuacions_.emplace_back(nomUsuari, nivell, puntuacio);
-	puntuacions_.sort([](const auto& a, const auto& b) { return std::get<2>(a) > std::get<2>(b); });
+
+	int jugades[5][1];
+	ifstream fitxer(nomFitxer);
+	if (!fitxer.is_open()) {
+		cout << "ERROR. Lectura Puntuacions";
+		return;
+	}
+	else {
+		string nomUsuari= " ";
+		int nivell = 0, punts = 0;
+
+		for (int i = 0; i < 5; i++) {
+			fitxer >> nomUsuari >> nivell >> punts;
+			jugades[i][0] = punts;
+
+		}
+
+		for (int i = 0; i < 5; i++) {
+			if (jugades[i][0] < puntacio && (jugades[i-1][0] > puntacio)) {
+				ofstream fitxer2(nomFitxer);
+				for(int j =0; j <=i ;j++){
+					if (j == i) {
+						fitxer2 << nomUusuari << " " << nivell << " " << puntacio;
+					}
+				}
+				fitxer2.close();
+
+			}
+		}
+	}
+	fitxer.close();
 }
-*/
+

@@ -15,7 +15,6 @@ bool Partida::finalitzarFigura()
     else {
         return false;
     }
-
 }
 
 void Partida::inicialitzarNouTauler()
@@ -116,6 +115,9 @@ void Partida::actualitza(int mode, double deltaTime)
         
     }
 
+    if (m_joc.comprovaTaulerPle()) {
+        setFinalPartida(true);
+    }
 
     // Pantalla
     GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
