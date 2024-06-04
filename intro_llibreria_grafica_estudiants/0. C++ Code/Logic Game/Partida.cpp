@@ -5,6 +5,12 @@
 #include "NodeMoviment.h"
 
 
+bool Partida::finalitzarPartida()
+{
+    return false;
+}
+
+
 
 void Partida::actualitza(int mode, double deltaTime)
 {
@@ -37,12 +43,16 @@ void Partida::actualitza(int mode, double deltaTime)
             break;
         case TECLA_DRETA:
             m_joc.mouFigura(1);
+            break;
         case TECLA_AMUNT:
             m_joc.giraFigura(GIR_HORARI);
+            break;
         case TECLA_ABAIX:
             m_joc.giraFigura(GIR_ANTI_HORARI);
+            break;
         case TECLA_ESPAI:
             m_joc.baixaFiguraCop();
+            break;
         case TECLA_ESCAPE:
             break;
         }
@@ -56,10 +66,62 @@ void Partida::actualitza(int mode, double deltaTime)
     }
     else {
 
-
-
-
+        switch (m_moviments[0]) {
+        case 1:
+            m_joc.giraFigura(GIR_HORARI);
+            break;
+        case 2:
+            m_joc.giraFigura(GIR_ANTI_HORARI);
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            m_joc.baixaFiguraCop();
+            break;
+        case 6:
+            break;
+        default:
+            cout << "ERROR. Llista" << endl;
+            break;
+        }
+        eliminarMoviment();
+        
     }
+
+       /*
+        LlistaMoviments llistaMoviments;
+
+        NodeMoviment* movimentActual = llistaMoviments.getPrimerMoviemnt();
+        if (movimentActual != nullptr && ( llistaMoviments.getPrimerMoviemnt() != nullptr)) {
+            switch (movimentActual->moviment) {
+            case 1:
+                m_joc.mouFigura(-1);
+                break;
+            case 2:
+                m_joc.mouFigura(1);
+                break;
+            case 3:
+                m_joc.giraFigura(GIR_HORARI);
+                break;
+            case 4:
+                m_joc.giraFigura(GIR_ANTI_HORARI);
+                break;
+            case 5:
+                m_joc.baixaFiguraCop();
+                break;
+            case 6:
+                break;
+            default:
+                cout << "ERROR." << endl;
+                break;
+            }
+            llistaMoviments.treuMoviment();
+        }
+        */
+
+
 
     // Pantalla
     GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
@@ -73,6 +135,7 @@ void Partida::actualitza(int mode, double deltaTime)
     if (filesCompletes > 0) {
         m_puntuacio += 100 * filesCompletes;
         switch (filesCompletes) {
+        case 0:break;
         case 1:
             break;
         case 2:
@@ -111,9 +174,8 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
 {   
     if (mode == 2) {
 
-        ifstream fileFigures;
+        ifstream fileFigures(fitxerFigures);
         ifstream fileMoviments(fitxerMoviments);
-        fileFigures.open(fitxerFigures);
 
         if (!fileFigures.is_open() || (!fileMoviments.is_open())) {
             cout << "ERROR. Inicialitzar Partida" << endl;
@@ -131,18 +193,32 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
                 llistaFigures.afegirFigura(figura, fila, columna, gir);
             }
 
+            int i = 0;
+            while (fileMoviments >> moviment) {
+                m_moviments[i] = moviment;
+                i++;
+            }
+
+
+            /*
             while (fileMoviments >> moviment) {
                 llistaMoviments.afegirMoviment(moviment);
             }
+            */
         }
     }
 }
 
-bool Partida::finalitzarPartida()
-{
-    return false;
-}
 
+void Partida::eliminarMoviment()
+{
+    for (int i = 0; i < 11; i++) {
+        if (m_moviments[i] != -1) {
+            m_moviments[i] = m_moviments[i + 1];
+        }
+        
+    }
+}
 
 
 

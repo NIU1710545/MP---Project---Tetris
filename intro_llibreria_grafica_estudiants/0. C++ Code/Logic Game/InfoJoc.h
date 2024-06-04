@@ -5,10 +5,10 @@ typedef enum
 {
     TECLA_ESQUERRA = 1,
     TECLA_DRETA = 2,
-    TECLA_AMUNT =3,
+    TECLA_AMUNT =1,
     TECLA_ABAIX =4,
     TECLA_ESPAI =5,
-    TECLA_ESCAPE = 7,
+    TECLA_ESCAPE = 6,
     NO_TECLA = -1
 } TipusTecla;
 

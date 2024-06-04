@@ -20,6 +20,7 @@ void Tetris::Menu()
 	cout << "4. Sortir" << endl;
 	cout << endl;
 	cout << "Eleccio: ";
+	//cin >> opcioMenu;
 	opcioMenu = 2;
 	cout << endl;
 }

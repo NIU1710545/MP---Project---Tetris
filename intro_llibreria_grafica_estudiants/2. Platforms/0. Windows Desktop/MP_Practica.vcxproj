@@ -194,7 +194,7 @@
     <ClInclude Include="..\..\0. C++ Code\Logic Game\Tetris.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\0. C++ Code\Logic Game\FormaFigures.txt" />
+    <Text Include="FormaFigures.txt" />
     <Text Include="Puntuacions.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

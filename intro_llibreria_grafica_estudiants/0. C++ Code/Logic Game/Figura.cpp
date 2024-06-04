@@ -228,6 +228,7 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 	}
 	*/
 
+	
 	int Parts[7][4][4]
 	{
 		{
@@ -275,12 +276,12 @@ void Figura::inicialitzarFigura(const string& nomFitxer)
 
 	};
 
-	determinarLimit(figura);
 
+	determinarLimit(figura);
 
 	for (int j = 0; j < MAX_ALCADA; j++) {
 		for (int k = 0; k < MAX_AMPLADA; k++) {
-			m_forma[j][k] = Parts[figura-1][j][k];
+			m_forma[j][k] = Parts[figura - 1][j][k];
 		}
 	}
 

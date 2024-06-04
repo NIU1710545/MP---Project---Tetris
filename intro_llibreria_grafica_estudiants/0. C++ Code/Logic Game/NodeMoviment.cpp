@@ -2,33 +2,38 @@
 
 void LlistaMoviments::afegirMoviment(int moviment)
 {
-	NodeMoviment* nouMoviment = new NodeMoviment();
-	nouMoviment->moviment = moviment;
-	nouMoviment->m_nextMoviment = movimentActual;
+    NodeMoviment* nouMoviment = new NodeMoviment();
+    nouMoviment->moviment = moviment;
+    nouMoviment->m_nextMoviment = nullptr; // No hi ha movimentActual, has de posar nullptr
 
-	movimentActual = nouMoviment;
-
-    if (primer == nullptr) {
-        primer = nouMoviment;
-        ultim = nouMoviment;
-        nouMoviment->m_nextMoviment = nullptr;
+    if (m_primer == nullptr) {
+        m_primer = nouMoviment;
+        m_ultim = nouMoviment;
     }
     else {
-        ultim->m_nextMoviment = nouMoviment;
-        ultim = nouMoviment;
-        nouMoviment->m_nextMoviment = nullptr;
+        m_ultim->m_nextMoviment = nouMoviment;
+        m_ultim = nouMoviment;
     }
-
 }
 
 void LlistaMoviments::treuMoviment()
 {
-    if (primer != nullptr) {
-        NodeMoviment* temp = primer;
-        primer = primer->m_nextMoviment;
+    if (m_primer != nullptr) {
+        NodeMoviment* temp = m_primer;
+        m_primer = m_primer->m_nextMoviment;
         delete temp;
-        if (primer == nullptr) {
-            ultim = nullptr;
+        if (m_primer == nullptr) {
+            m_ultim = nullptr;
         }
     }
+}
+
+NodeMoviment* LlistaMoviments::getPrimerMoviemnt() const
+{
+    return m_primer;
+}
+
+NodeMoviment* LlistaMoviments::getUltimMoviment() const
+{
+    return m_ultim;
 }

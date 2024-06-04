@@ -148,10 +148,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\0. C++ Code\Logic Game\FormaFigures.txt">
-      <Filter>Logic Game\Source files</Filter>
-    </Text>
-    <Text Include="..\..\0. C++ Code\Logic Game\Puntuacions.txt">
+    <Text Include="Puntuacions.txt" />
+    <Text Include="FormaFigures.txt">
       <Filter>Logic Game\Source files</Filter>
     </Text>
   </ItemGroup>

@@ -9,17 +9,15 @@ struct NodeMoviment {
 
 class LlistaMoviments {
 public:
-	LlistaMoviments() : movimentActual(nullptr) {}
 
 	void afegirMoviment(int moviment);
 	void treuMoviment();
 
-	NodeMoviment* getPrimerMoviemnt() { return primer; }
-	NodeMoviment* getUltimMoviment() { return ultim; }
+	NodeMoviment* getPrimerMoviemnt() const;
+	NodeMoviment* getUltimMoviment() const;
 
 
 private:
-	NodeMoviment* movimentActual;
-	NodeMoviment* primer;
-	NodeMoviment* ultim;
+	NodeMoviment* m_primer;
+	NodeMoviment* m_ultim;
 };
