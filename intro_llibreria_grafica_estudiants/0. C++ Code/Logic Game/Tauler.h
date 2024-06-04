@@ -14,6 +14,7 @@ public:
 	~Tauler();
 
 	void inicialitzarTauler(string nomFitxer);
+	void inicialitzarTaulerActaul(const string& nomFitxer);
 	void baixarFigura(Figura& figura);
 	void desplacarLateral(Figura& figura, int direccio);
 

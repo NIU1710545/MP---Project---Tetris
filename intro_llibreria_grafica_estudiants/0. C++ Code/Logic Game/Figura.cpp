@@ -15,8 +15,6 @@ Figura::Figura() : m_figura(NO_FIGURA), m_color(NO_COLOR), m_columna(0), m_fila(
 	}
 }
 
-
-
 void Figura::dibuixa()
 {
 	GraphicManager* gManager = GraphicManager::getInstance();

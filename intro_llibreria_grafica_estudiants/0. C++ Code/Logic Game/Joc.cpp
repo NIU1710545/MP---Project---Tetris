@@ -6,18 +6,20 @@ void Joc::inicialitza(const string& nomFitxer)
 	m_tauler.inicialitzarTauler(nomFitxer);
 }
 
-
-
-
 void Joc::dibuixa()
 {
 	m_tauler.dibuixa();
 	m_figura.dibuixa();
 }
 
-void Joc::novaFigura()
+void Joc::novaFigura(const string & nomFitxer)
 {
+	m_figura.inicialitzarFigura(nomFitxer);
+}
 
+void Joc::nouTauler(const string& nomFitxer)
+{
+	m_tauler.inicialitzarTaulerActaul(nomFitxer);
 }
 
  // Baixa de cop la figura fins col·locar-la
@@ -81,7 +83,7 @@ int Joc::baixaFigura()
 void Joc::colocaFigura(int nfigura)
 {
 	int fila = m_figura.getFila() ;
-	int columna = m_figura.getColumna() ;
+	int columna = m_figura.getColumna();
 	int forma[MAX_ALCADA][MAX_AMPLADA]{};
 
 
@@ -96,7 +98,7 @@ void Joc::colocaFigura(int nfigura)
 			if (m_figura.getForma(i, j) != 0) {
 				switch (nfigura) {
 				case 2:
-					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i-1, columna + j), m_figura.getForma(i, j));
+					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i-1, columna + j-1), m_figura.getForma(i, j));
 					break;
 				case 3: case 4:
 					m_tauler.setColorCasella(m_tauler.getCasellaRef(fila + i - 1, columna + j - 1), m_figura.getForma(i, j));

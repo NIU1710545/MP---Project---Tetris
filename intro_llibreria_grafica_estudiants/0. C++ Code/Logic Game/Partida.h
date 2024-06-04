@@ -15,7 +15,7 @@ const int MAX_FIGURES = 7;
 class Partida 
 {
 public:
-    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20) {}
+    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20), m_nMoviment(0) {}
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);
@@ -23,8 +23,8 @@ public:
 
     bool finalitzarFigura();
     bool finalitzarPartida();
-    void inicialitzarNovaFigura();    
-    int determinarLimit(int figura);
+    void inicialitzarNovaFigura(int mode);   
+    void inicialitzarNouTauler();
 
 private:
     double m_temps;
@@ -33,12 +33,11 @@ private:
     int m_puntuacio;
     int m_nivell;
     int m_nFigura = 0;
-    int numFigura[4][MAX_FIGURES]{};
+    int numFigura[MAX_FIGURES][4]{};
+    int m_nMoviment;
     int m_moviments[11]{};
 
-    bool figuraColocada = false;;
-
-    void eliminarMoviment();
+    bool figuraColocada = false;
 
 };
 

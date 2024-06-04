@@ -9,6 +9,7 @@
 #include "fsrmscreen.h"
 #include <list>
 #include <string>
+#include <tuple>
 
 
 using namespace std;

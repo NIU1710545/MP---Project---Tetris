@@ -40,10 +40,10 @@ void Tetris::juga(int mode, double deltaTime, Screen pantalla)
 			m_partida.actualitza(mode, deltaTime);
 			pantalla.update();
 		}
-		m_partida.inicialitzarNovaFigura();
+		m_partida.inicialitzarNouTauler();
+		m_partida.inicialitzarNovaFigura(mode);
 
 	}
-	
 }
 
 
@@ -73,7 +73,7 @@ void Tetris::guardaPuntuacions()
 	}
 }
 
-void Tetris::afegirPuntuacio(const std::string& nomUsuari, const std::string& nivell, int puntuacio) 
+void Tetris::afegirPuntuacio(const string& nomUsuari, const string& nivell, int puntuacio) 
 {
 	puntuacions_.emplace_back(nomUsuari, nivell, puntuacio);
 	puntuacions_.sort([](const auto& a, const auto& b) { return std::get<2>(a) > std::get<2>(b); });

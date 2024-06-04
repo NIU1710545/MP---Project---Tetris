@@ -18,9 +18,11 @@ public:
 	void escriuTauler(const string& nomFitxer);
 
 	void dibuixa();
-	void novaFigura();
+	void novaFigura(const string& nomFitxer);
+	void nouTauler(const string& nomFitxer);
 	void baixaFiguraCop();
 
+	void setColocada(bool resultat) { colocada = resultat; }
 
 	int getfilesCompletes() const { return filesCompletes; }
 	bool getColocada() const { return colocada; }

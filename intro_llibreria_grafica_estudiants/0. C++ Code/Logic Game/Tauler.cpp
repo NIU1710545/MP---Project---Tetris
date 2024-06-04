@@ -96,7 +96,7 @@ void Tauler::setColorCasella(ColorFigura& casella, int colorCasella)
 	}
 }
 
-void Tauler::inicialitzarTauler(string nomFitxer) 
+void Tauler::inicialitzarTauler(string nomFitxer)
 {
 	ifstream fitxerLectura(nomFitxer);
 	if (!fitxerLectura.is_open()) {
@@ -115,13 +115,39 @@ void Tauler::inicialitzarTauler(string nomFitxer)
 				}
 
 				for (int j = 0; j < MAX_COL; j++) {
-					setColorCasella(m_tauler[i - 1][j], fila[j]);
+					setColorCasella(m_tauler[i-1][j], fila[j]);
 				}
 			}
 			else {
 				for (int j = 0; j < 4; j++) {
 					fitxerLectura >> fila[j];
 				}
+			}
+
+		}
+		fitxerLectura.close();
+	}
+}
+
+
+void Tauler::inicialitzarTaulerActaul(const string& nomFitxer)
+{
+	ifstream fitxerLectura(nomFitxer);
+	if (!fitxerLectura.is_open()) {
+		cout << "ERROR. Lectura" << endl;
+		return;
+	}
+
+	int fila[MAX_COL]{};
+	while (!fitxerLectura.eof() && (fitxerLectura.is_open())) {
+
+		for (int i = 0; i < MAX_FILA ; i++) {
+
+			for (int j = 0; j < MAX_COL; j++) {
+				fitxerLectura >> fila[j];
+			}
+			for (int j = 0; j < MAX_COL; j++) {
+				setColorCasella(m_tauler[i ][j], fila[j]);
 			}
 
 		}
@@ -148,7 +174,7 @@ bool Tauler::colisions(Figura figura, int fila, int columna)
 				switch (figura.getFigura()) {
 				case 1:
 					if (((fila + i >= MAX_FILA) || (fila + i < 0) || (columna + j >= MAX_COL) ||
-						(columna + j) < 0) || (getCasella(fila + i, columna + j) != 0)) {
+						(columna + j) < 0) || (getCasella(fila , columna ) != 0)) {
 						return true;
 					}
 					break;

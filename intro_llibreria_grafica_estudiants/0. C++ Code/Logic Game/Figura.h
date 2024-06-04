@@ -48,7 +48,7 @@ public:
     void girarFigura(int gir, int limit, int direccio);
     
     void dibuixa();
-    int determinarLimit(int figura);
+
 
     void setColor(int color);
     void setFigura(int figura);
@@ -73,6 +73,7 @@ private:
     int m_forma[MAX_ALCADA][MAX_AMPLADA];
     int posicio4x4 = 0;
 
+    int determinarLimit(int figura);
 };
 #endif
 

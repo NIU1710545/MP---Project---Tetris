@@ -9,10 +9,13 @@
 bool Partida::finalitzarFigura()
 {
     if (m_joc.getColocada()) {
-        figuraColocada = true;
-        m_nFigura++;
+        m_joc.setColocada(false);
+        return true;
     }
-    return true;
+    else {
+        return false;
+    }
+
 }
 
 bool Partida::finalitzarPartida()
@@ -20,81 +23,29 @@ bool Partida::finalitzarPartida()
     return false;
 }
 
-
-void Partida::inicialitzarNovaFigura()
+void Partida::inicialitzarNouTauler()
 {
+    m_joc.escriuTauler("NouTauler.txt");
+    m_joc.nouTauler("NouTauler.txt");
+}
 
-    Figura novaFigura;
-
-    int figura, fila, columna, gir;
-
-    figura = numFigura[0][m_nFigura];
-    fila = numFigura[1][m_nFigura];
-    columna = numFigura[2][m_nFigura];
-    gir = numFigura[3][m_nFigura];
-
-    novaFigura.setFila(fila);
-    novaFigura.setColumna(columna);
-
-    int Parts[7][4][4]
-    {
-        {
-            { 1, 1, 0, 0 },
-            { 1, 1, 0, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        },
-        {
-            { 0, 0, 0, 0 },
-            { 2, 2, 2, 2 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        },
-        {
-            { 0, 3, 0, 0 },
-            { 3, 3, 3, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        },
-        {
-            { 0, 0, 4, 0 },
-            { 4, 4, 4, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        },
-        {
-            { 5, 0, 0, 0 },
-            { 5, 5, 5, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        },
-        {
-            { 6, 6, 0, 0 },
-            { 0, 6, 6, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        },
-        {
-            { 0, 7, 7, 0 },
-            { 7, 7, 0, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 },
-        }
-
-    };
-
-
-    novaFigura.determinarLimit(novaFigura.getLimit());
-
-    for (int j = 0; j < MAX_ALCADA; j++) {
-        for (int k = 0; k < MAX_AMPLADA; k++) {
-            novaFigura.setForma(j, k, Parts[figura - 1][j][k]);
-        }
+void Partida::inicialitzarNovaFigura(int mode)
+{
+    if()
+    m_nMoviment = 0;
+    ofstream fitxerNovaFigura("NovaFigura.txt");
+    if (!fitxerNovaFigura.is_open()) {
+        cout << "ERROR. Escriptura" << endl;
+        return;
     }
+    else {
+        fitxerNovaFigura << numFigura[m_nFigura][0] << " " << numFigura[m_nFigura][1] << " " << numFigura[m_nFigura][2] << " " << numFigura[m_nFigura][3];
+    }
+    fitxerNovaFigura.close();
 
-    novaFigura.setColor(figura);
-    novaFigura.setFigura(figura);
-    novaFigura.girarFigura(gir, novaFigura.getLimit(), 0);
+    m_joc.novaFigura("NovaFigura.txt");
+    m_nFigura++;
+    figuraColocada = false;
 }
 
 
@@ -152,7 +103,7 @@ void Partida::actualitza(int mode, double deltaTime)
     }
     else {
 
-        switch (m_moviments[0]) {
+        switch (m_moviments[m_nMoviment]) {
         case 0:
             m_joc.mouFigura(-1);
             break;
@@ -171,7 +122,7 @@ void Partida::actualitza(int mode, double deltaTime)
         case 5:
             break;
         }
-        eliminarMoviment();
+        m_nMoviment++;
         
     }
 
@@ -269,13 +220,11 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
 
             m_joc.inicialitza(fitxerInicial);
 
-            int figura[4]{};
             int moviment;
-            int k = 0;
-            while (fileFigures >> figura[4])
-            {
+            
+            for (int i = 0; i < MAX_FIGURES; i++) {
                 for (int j = 0; j < 4; j++) {
-                    numFigura[k][j] = figura[j];
+                    fileFigures >> numFigura[i][j];
                 }
             }
 
@@ -298,19 +247,6 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
     }
 }
 
-
-void Partida::eliminarMoviment()
-{
-    for (int i = 0; i < 11; i++) {
-        if (m_moviments[i] != -1) {
-            m_moviments[i] = m_moviments[i + 1];
-        }
-        if (i == 10) {
-            m_moviments[i] = -1;
-        }
-        
-    }
-}
 
 
 
