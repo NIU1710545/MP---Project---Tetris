@@ -3,7 +3,6 @@
 #include "Figura.h"
 #include "InfoJoc.h"
 
-
 const int MAX_FILA = N_FILES_TAULER;
 const int MAX_COL = N_COL_TAULER;
 
@@ -27,6 +26,7 @@ public:
 
 private:
 	ColorFigura m_tauler[MAX_FILA][MAX_COL];
+	
 };
 
 /*
