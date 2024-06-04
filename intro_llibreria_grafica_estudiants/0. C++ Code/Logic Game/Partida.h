@@ -15,7 +15,7 @@ const int MAX_FIGURES = 7;
 class Partida 
 {
 public:
-    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20), m_nMoviment(0), m_final(false) {}
+    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(1), m_nMoviment(0), m_final(false) {}
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);
@@ -30,8 +30,8 @@ public:
     bool getFinalPartida() const { return m_final; }
 
 private:
-    double m_temps;
-    float m_tempsVelocitat;
+    double m_temps =0.0;
+    double m_tempsVelocitat;
     bool m_final;
     Joc m_joc;
     int m_puntuacio;

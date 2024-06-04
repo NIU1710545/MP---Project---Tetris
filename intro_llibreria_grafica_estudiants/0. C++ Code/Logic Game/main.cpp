@@ -48,9 +48,10 @@ int main(int argc, const char* argv[])
     Uint64 LAST = 0;
     double deltaTime = 0;
 
-    string fitxerPartida = "./data/Games/partida.txt";
+    string fitxerPartidaTest = "./data/Games/partida.txt";
     string fitxerFiguresTest = "./data/Games/figures.txt";
     string fitxerMovimentsTest = "./data/Games/moviments.txt";
+    string fitxerPartida = "./data/Games/iniciPartida.txt";
 
 
     // CODI PER LA GESTIÓ DEL MENÚ I DE LES OPCIONS DEL JOC
@@ -69,17 +70,15 @@ int main(int argc, const char* argv[])
                 LAST = NOW;
                 NOW = SDL_GetPerformanceCounter();
                 deltaTime = (double)((NOW - LAST) / (double)SDL_GetPerformanceFrequency());
-
-                // Captura tots els events de ratolí i teclat de l'ultim cicle
                 pantalla.processEvents();
 
-                tetris.juga(tetris.getMode(), deltaTime, pantalla);
+                tetris.getPartida().actualitza(tetris.getMode(), deltaTime);
+
+                bool acabar = tetris.juga(tetris.getMode(), deltaTime);
+                pantalla.update();
+
 
             } while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
-            // Sortim del bucle si pressionem ESC
-
-            //Instruccio necesaria per alliberar els recursos de la llibreria 
-            SDL_Quit();
 
             break;
         case 3:
@@ -95,6 +94,8 @@ int main(int argc, const char* argv[])
 
     } while (tetris.getMode() == 4);
 
+    //Instruccio necesaria per alliberar els recursos de la llibreria 
+    SDL_Quit();
 
     return 0;
 }

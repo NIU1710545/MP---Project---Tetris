@@ -32,19 +32,26 @@ void Tetris::inicialitzar(int mode, const string& fitxerInicial, const string& f
 }
 
 
-void Tetris::juga(int mode, double deltaTime, Screen pantalla)
+bool Tetris::juga(int mode, double deltaTime)
 {
-	while (!m_partida.getFinalPartida()) {
-		while (!m_partida.finalitzarFigura()) {
-			m_partida.actualitza(mode, deltaTime);
-			pantalla.update();
+	if (!m_partida.getFinalPartida()) {
+
+		m_partida.actualitza(mode, deltaTime);
+		
+		if(m_partida.finalitzarFigura()) { 
+			m_partida.inicialitzarNouTauler();
+			m_partida.inicialitzarNovaFigura(mode);
 		}
-		m_partida.inicialitzarNouTauler();
-		m_partida.inicialitzarNovaFigura(mode);
 
 	}
-	string missatgeFinal = "GAME OVER :(";
-	GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatgeFinal);
+	else {
+		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0, false);
+		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER, false);
+		string missatgeFinal = "GAME OVER :(";
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatgeFinal);
+	}
+	return m_partida.getFinalPartida();
+
 }
 
 

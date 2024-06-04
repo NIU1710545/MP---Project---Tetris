@@ -24,20 +24,18 @@ public:
 	void inicialitzar(int mode, const string& fitxerInicial, const string& fitxerFigures,
 		const string& fitxerMoviments);
 
-	void juga( int mode, double deltaTime, Screen pantalla);
-	void mostraPuntuacions();
+	bool juga( int mode, double deltaTime);
+	Partida getPartida() const { return m_partida; }
 
 	int getMode() const { return opcioMenu; }
 
+	void mostraPuntuacions();
 	void guardaPuntuacions();
 	void afegirPuntuacio(const string& nomUusuari, const string& nivell, int puntacio);
 
 private:
 	Partida m_partida;
 	int opcioMenu;
-	list <tuple <string, string, int>> puntuacions_;
-
-
 
 };
 

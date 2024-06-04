@@ -48,60 +48,46 @@ void Partida::inicialitzarNovaFigura(int mode)
         }
     }
     else {
-
+        m_joc.novaFigura();
     }
 }
 
 
 void Partida::actualitza(int mode, double deltaTime)
 {
-
+    m_temps += deltaTime;
     if (mode == 1) {
         // Normal
-        TipusTecla tecla = NO_TECLA;
-        if (Keyboard_GetKeyTrg(KEYBOARD_LEFT)) {
-            tecla = TECLA_ESQUERRA;
-        }
-        if (Keyboard_GetKeyTrg(KEYBOARD_RIGHT)) {
-            tecla = TECLA_DRETA;
-        }
-        if (Keyboard_GetKeyTrg(KEYBOARD_UP)) {
-            tecla = TECLA_AMUNT;
-        }
-        if (Keyboard_GetKeyTrg(KEYBOARD_DOWN)) {
-            tecla = TECLA_ABAIX;
-        }
-        if (Keyboard_GetKeyTrg(KEYBOARD_SPACE)) {
-            tecla = TECLA_ESPAI;
-        }
-        if (Keyboard_GetKeyTrg(KEYBOARD_ESCAPE)) {
-            tecla = TECLA_ESCAPE;
-        }
+        int TECLA = -1;
+        if (Keyboard_GetKeyTrg(KEYBOARD_RIGHT))
+            TECLA = KEYBOARD_RIGHT;
+        else if (Keyboard_GetKeyTrg(KEYBOARD_LEFT))
+            TECLA = KEYBOARD_LEFT;
+        else if (Keyboard_GetKeyTrg(KEYBOARD_DOWN))
+            TECLA = KEYBOARD_DOWN;
+        else if (Keyboard_GetKeyTrg(KEYBOARD_UP))
+            TECLA = KEYBOARD_UP;
+        else if (Keyboard_GetKeyTrg(KEYBOARD_SPACE))
+            TECLA = KEYBOARD_SPACE;
 
-        switch (tecla) {
-        case TECLA_ESQUERRA:
+        switch (TECLA)
+        {
+        case KEYBOARD_RIGHT:
             m_joc.mouFigura(-1);
             break;
-        case TECLA_DRETA:
+        case KEYBOARD_LEFT:
             m_joc.mouFigura(1);
             break;
-        case TECLA_AMUNT:
-            m_joc.giraFigura(GIR_HORARI);
-            break;
-        case TECLA_ABAIX:
+        case KEYBOARD_UP:
             m_joc.giraFigura(GIR_ANTI_HORARI);
             break;
-        case TECLA_ESPAI:
+        case KEYBOARD_DOWN:
+            m_joc.giraFigura(GIR_HORARI);
+            break;
+        case KEYBOARD_SPACE:
             m_joc.baixaFiguraCop();
             break;
-        case TECLA_ESCAPE:
-            break;
-        }
-
-        m_temps += deltaTime;
-        if (m_temps > m_tempsVelocitat) {
-            m_joc.baixaFigura();
-            m_temps = 0.0;
+        case KEYBOARD_ESCAPE: break;
         }
 
     }
@@ -129,38 +115,6 @@ void Partida::actualitza(int mode, double deltaTime)
         m_nMoviment++;
         
     }
-
-       /*
-        LlistaMoviments llistaMoviments;
-
-        NodeMoviment* movimentActual = llistaMoviments.getPrimerMoviemnt();
-        if (movimentActual != nullptr && ( llistaMoviments.getPrimerMoviemnt() != nullptr)) {
-            switch (movimentActual->moviment) {
-            case 1:
-                m_joc.mouFigura(-1);
-                break;
-            case 2:
-                m_joc.mouFigura(1);
-                break;
-            case 3:
-                m_joc.giraFigura(GIR_HORARI);
-                break;
-            case 4:
-                m_joc.giraFigura(GIR_ANTI_HORARI);
-                break;
-            case 5:
-                m_joc.baixaFiguraCop();
-                break;
-            case 6:
-                break;
-            default:
-                cout << "ERROR." << endl;
-                break;
-            }
-            llistaMoviments.treuMoviment();
-        }
-        */
-
 
 
     // Pantalla
@@ -192,15 +146,14 @@ void Partida::actualitza(int mode, double deltaTime)
 
     // Actualització nivell i velocitat
 
+    if (m_temps >= m_tempsVelocitat) {
+
+        m_joc.baixaFigura();
+        m_temps = 0.0;
+    }
     if (m_puntuacio >= m_nivell * 1000) {
         m_nivell++;
         m_tempsVelocitat -= 0.1;
-    }
-
-    m_temps += deltaTime;
-    if (m_temps > m_tempsVelocitat) {
-        m_joc.baixaFigura();
-        m_temps = 0.0;
     }
     
     // Nivell i puntució actual
@@ -212,6 +165,9 @@ void Partida::actualitza(int mode, double deltaTime)
 void Partida::inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
     const string& fitxerMoviments)
 {   
+
+    m_joc.inicialitza(fitxerInicial, mode);
+
     if (mode == 2) {
 
         ifstream fileFigures(fitxerFigures);
@@ -221,8 +177,6 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
             cout << "ERROR. Inicialitzar Partida" << endl;
         }
         else {
-
-            m_joc.inicialitza(fitxerInicial, mode);
 
             int moviment;
             
@@ -249,9 +203,7 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
             */
         }
     }
-    else {
-        m_joc.novaFigura();
-    }
+
 }
 
 

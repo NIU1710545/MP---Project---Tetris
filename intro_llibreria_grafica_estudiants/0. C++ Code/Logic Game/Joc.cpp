@@ -4,6 +4,7 @@ void Joc::inicialitza(const string& nomFitxer, int mode)
 {
 	if (mode == 1) {
 		novaFigura();
+		m_tauler.inicialitzarTaulerActaul(nomFitxer);
 	}
 	else {
 		m_figura.inicialitzarFigura(nomFitxer);
