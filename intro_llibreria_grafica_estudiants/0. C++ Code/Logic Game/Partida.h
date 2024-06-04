@@ -22,7 +22,7 @@ public:
     void actualitza(int mode, double deltaTime);
 
     bool finalitzarFigura();
-    bool finalitzarPartida();
+    bool finalitzarPartida(bool final);
     void inicialitzarNovaFigura(int mode);   
     void inicialitzarNouTauler();
 

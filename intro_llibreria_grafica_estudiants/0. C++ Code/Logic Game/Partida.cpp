@@ -18,9 +18,15 @@ bool Partida::finalitzarFigura()
 
 }
 
-bool Partida::finalitzarPartida()
+bool Partida::finalitzarPartida(bool final)
 {
-    return false;
+    if (final) {
+        return true;
+    }
+    else {
+        return false;
+
+    }
 }
 
 void Partida::inicialitzarNouTauler()
@@ -31,21 +37,30 @@ void Partida::inicialitzarNouTauler()
 
 void Partida::inicialitzarNovaFigura(int mode)
 {
-    if()
-    m_nMoviment = 0;
-    ofstream fitxerNovaFigura("NovaFigura.txt");
-    if (!fitxerNovaFigura.is_open()) {
-        cout << "ERROR. Escriptura" << endl;
-        return;
+    if (mode == 2) {
+        if (m_nFigura < 7) {
+            m_nMoviment = 0;
+            ofstream fitxerNovaFigura("NovaFigura.txt");
+            if (!fitxerNovaFigura.is_open()) {
+                cout << "ERROR. Escriptura" << endl;
+                return;
+            }
+            else {
+                fitxerNovaFigura << numFigura[m_nFigura][0] << " " << numFigura[m_nFigura][1] << " " << numFigura[m_nFigura][2] << " " << numFigura[m_nFigura][3];
+            }
+            fitxerNovaFigura.close();
+
+            m_joc.novaFigura("NovaFigura.txt");
+            m_nFigura++;
+            figuraColocada = false;
+        }
+        else {
+            finalitzarPartida(true);
+        }
     }
     else {
-        fitxerNovaFigura << numFigura[m_nFigura][0] << " " << numFigura[m_nFigura][1] << " " << numFigura[m_nFigura][2] << " " << numFigura[m_nFigura][3];
-    }
-    fitxerNovaFigura.close();
 
-    m_joc.novaFigura("NovaFigura.txt");
-    m_nFigura++;
-    figuraColocada = false;
+    }
 }
 
 
