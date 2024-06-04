@@ -34,10 +34,14 @@ private:
 	int puntuacio = 0;
 	int filesCompletes = 0;
 	bool colocada = false;
+	bool figuraSortir[7] = { false };
+	int nFiguresSortir = -1;
 
 	void colocaFigura(int nfigura);
 	int determinarFigura(int figura);
 	int eliminarFilaCompleta();
+	void seleccionarNovaFigura(int &nFigura);
+	void reiniciarFigures();
 };
 
 

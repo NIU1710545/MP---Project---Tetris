@@ -1,5 +1,6 @@
 #include "Joc.h"
 
+
 void Joc::inicialitza(const string& nomFitxer, int mode)
 {
 	if (mode == 1) {
@@ -23,15 +24,32 @@ void Joc::novaFigura(const string & nomFitxer)
 	m_figura.inicialitzarFigura(nomFitxer);
 }
 
+void Joc::seleccionarNovaFigura(int& nFigura)
+{
+	do {
+		nFigura = rand() % 7;
+	} while (figuraSortir[nFigura] || (nFigura == 0));
+	figuraSortir[nFigura] = true;
+	nFiguresSortir++;
+}
+
+void Joc::reiniciarFigures()
+{
+	for (int i = 0; i < 7; i++) {
+		figuraSortir[i] = false;
+	}
+	nFiguresSortir = 0;
+}
+
 void Joc::novaFigura()
 {
 	int numFigura = -1;
-	int numGir = -1;
-	do {
-		 numFigura = rand() % 8;
-		 numGir = rand() % 4;
-
-	} while (numFigura == 0);
+	int numGir = rand() % 4;
+	
+	if (nFiguresSortir == 7) {
+		reiniciarFigures();
+	}
+	seleccionarNovaFigura(numFigura);
 
 	ofstream fitxerNovaFigura("NovaFigura.txt");
 	if (!fitxerNovaFigura.is_open()) {

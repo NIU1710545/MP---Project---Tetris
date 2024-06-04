@@ -41,7 +41,7 @@ void Partida::inicialitzarNovaFigura(int mode)
 
             m_joc.novaFigura("NovaFigura.txt");
             m_nFigura++;
-            figuraColocada = false;
+            m_joc.setColocada(false);
         }
         else {
             setFinalPartida(true);
@@ -73,10 +73,10 @@ void Partida::actualitza(int mode, double deltaTime)
         switch (TECLA)
         {
         case KEYBOARD_RIGHT:
-            m_joc.mouFigura(-1);
+            m_joc.mouFigura(1);
             break;
         case KEYBOARD_LEFT:
-            m_joc.mouFigura(1);
+            m_joc.mouFigura(-1);
             break;
         case KEYBOARD_UP:
             m_joc.giraFigura(GIR_ANTI_HORARI);
@@ -191,16 +191,6 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
                 m_moviments[i] = moviment;
                 i++;
             }
-
-
-            /*
-             while (fileFigures >> figura >> fila >> columna >> gir) {
-                llistaFigures.afegirFigura(figura, fila, columna, gir);
-            }
-            while (fileMoviments >> moviment) {
-                llistaMoviments.afegirMoviment(moviment);
-            }
-            */
         }
     }
 

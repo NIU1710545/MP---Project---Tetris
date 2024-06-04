@@ -26,11 +26,13 @@ public:
     void inicialitzarNouTauler();
 
     void setFinalPartida(bool final) { m_final = final; }
+    void setTemps(double time) { m_temps = time; }
 
     bool getFinalPartida() const { return m_final; }
+    int getmTemps() const { return m_temps; }
 
 private:
-    double m_temps =0.0;
+    double m_temps = 0;
     double m_tempsVelocitat;
     bool m_final;
     Joc m_joc;
@@ -40,8 +42,6 @@ private:
     int numFigura[MAX_FIGURES][4]{};
     int m_nMoviment;
     int m_moviments[11]{};
-
-    bool figuraColocada = false;
 
 };
 
