@@ -11,7 +11,7 @@ class Joc
 public:
 	Joc() {}
 
-	void inicialitza(const string& nomFitxer);
+	void inicialitza(const string& nomFitxer, int mode);
 	bool giraFigura(DireccioGir direccio);
 	bool mouFigura(int dirX);
 	int baixaFigura();

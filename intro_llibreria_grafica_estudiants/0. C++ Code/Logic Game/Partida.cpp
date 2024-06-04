@@ -222,7 +222,7 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
         }
         else {
 
-            m_joc.inicialitza(fitxerInicial);
+            m_joc.inicialitza(fitxerInicial, mode);
 
             int moviment;
             
@@ -248,6 +248,9 @@ void Partida::inicialitza(int mode, const string& fitxerInicial, const string& f
             }
             */
         }
+    }
+    else {
+        m_joc.novaFigura();
     }
 }
 

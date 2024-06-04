@@ -1,9 +1,14 @@
 #include "Joc.h"
 
-void Joc::inicialitza(const string& nomFitxer)
+void Joc::inicialitza(const string& nomFitxer, int mode)
 {
-	m_figura.inicialitzarFigura(nomFitxer);
-	m_tauler.inicialitzarTauler(nomFitxer);
+	if (mode == 1) {
+		novaFigura();
+	}
+	else {
+		m_figura.inicialitzarFigura(nomFitxer);
+		m_tauler.inicialitzarTauler(nomFitxer);
+	}
 }
 
 void Joc::dibuixa()
@@ -19,8 +24,13 @@ void Joc::novaFigura(const string & nomFitxer)
 
 void Joc::novaFigura()
 {
-	int numFigura = rand() % 8;
-	int numGir = rand() % 4;
+	int numFigura = -1;
+	int numGir = -1;
+	do {
+		 numFigura = rand() % 8;
+		 numGir = rand() % 4;
+
+	} while (numFigura == 0);
 
 	ofstream fitxerNovaFigura("NovaFigura.txt");
 	if (!fitxerNovaFigura.is_open()) {
