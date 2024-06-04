@@ -10,7 +10,7 @@ Tetris::~Tetris()
 
 }
 
-void Tetris::Menu()
+void Tetris::Menu() 
 {
 	cout << "MENU PRINCIPAL" << endl;
 	cout << "======================" << endl;
@@ -20,8 +20,7 @@ void Tetris::Menu()
 	cout << "4. Sortir" << endl;
 	cout << endl;
 	cout << "Eleccio: ";
-	//cin >> opcioMenu;
-	opcioMenu = 2;
+	cin >> opcioMenu;
 	cout << endl;
 }
 
@@ -35,7 +34,7 @@ void Tetris::inicialitzar(int mode, const string& fitxerInicial, const string& f
 
 void Tetris::juga(int mode, double deltaTime, Screen pantalla)
 {
-	while (!m_partida.finalitzarPartida()) {
+	while (!m_partida.getFinalPartida()) {
 		while (!m_partida.finalitzarFigura()) {
 			m_partida.actualitza(mode, deltaTime);
 			pantalla.update();
@@ -44,21 +43,39 @@ void Tetris::juga(int mode, double deltaTime, Screen pantalla)
 		m_partida.inicialitzarNovaFigura(mode);
 
 	}
+	string missatgeFinal = "GAME OVER :(";
+	GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatgeFinal);
+}
+
+
+// Nom a registrar - Nivell i Puntuació final
+
+void Tetris::guardaPuntuacions()
+{
+
+}
+
+void Tetris::afegirPuntuacio(const string& nomUusuari, const string& nivell, int puntacio)
+{
+
+}
+
+void Tetris::mostraPuntuacions()
+{
+
 }
 
 
 
-
-// Nom a registrar - Nivell i Puntuació final
+/*
 void Tetris::mostraPuntuacions()
 {
 	for (const auto& puntuacio : puntuacions_) {
-		std::string missatge = "Usuari: " + std::get<0>(puntuacio) + " Nivel: " + std::get<1>(puntuacio) + ",   Puntuacio: " + std::to_string(std::get<2>(puntuacio));
+		string missatge = "Usuari: " + get<0>(puntuacio) + " Nivel: " + get<1>(puntuacio) + ",   Puntuacio: " + to_string(get<2>(puntuacio));
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatge);
 	}
 
 }
-
 
 void Tetris::guardaPuntuacions() 
 {
@@ -78,3 +95,4 @@ void Tetris::afegirPuntuacio(const string& nomUsuari, const string& nivell, int 
 	puntuacions_.emplace_back(nomUsuari, nivell, puntuacio);
 	puntuacions_.sort([](const auto& a, const auto& b) { return std::get<2>(a) > std::get<2>(b); });
 }
+*/

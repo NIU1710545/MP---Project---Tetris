@@ -18,17 +18,6 @@ bool Partida::finalitzarFigura()
 
 }
 
-bool Partida::finalitzarPartida(bool final)
-{
-    if (final) {
-        return true;
-    }
-    else {
-        return false;
-
-    }
-}
-
 void Partida::inicialitzarNouTauler()
 {
     m_joc.escriuTauler("NouTauler.txt");
@@ -55,7 +44,7 @@ void Partida::inicialitzarNovaFigura(int mode)
             figuraColocada = false;
         }
         else {
-            finalitzarPartida(true);
+            setFinalPartida(true);
         }
     }
     else {

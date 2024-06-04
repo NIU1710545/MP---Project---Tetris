@@ -15,20 +15,24 @@ const int MAX_FIGURES = 7;
 class Partida 
 {
 public:
-    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20), m_nMoviment(0) {}
+    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20), m_nMoviment(0), m_final(false) {}
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);
     void actualitza(int mode, double deltaTime);
 
     bool finalitzarFigura();
-    bool finalitzarPartida(bool final);
     void inicialitzarNovaFigura(int mode);   
     void inicialitzarNouTauler();
+
+    void setFinalPartida(bool final) { m_final = final; }
+
+    bool getFinalPartida() const { return m_final; }
 
 private:
     double m_temps;
     float m_tempsVelocitat;
+    bool m_final;
     Joc m_joc;
     int m_puntuacio;
     int m_nivell;
