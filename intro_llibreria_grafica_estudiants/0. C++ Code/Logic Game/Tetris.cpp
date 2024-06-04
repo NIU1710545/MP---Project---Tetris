@@ -39,9 +39,11 @@ bool Tetris::juga(int mode, double deltaTime)
 		m_partida.actualitza(mode, deltaTime);
 		
 		if(m_partida.finalitzarFigura()) { 
+			
 			m_partida.inicialitzarNouTauler();
 			m_partida.inicialitzarNovaFigura(mode);
 			m_partida.setTemps(0);
+			m_partida.setPuntuacio(10);
 		}
 
 	}

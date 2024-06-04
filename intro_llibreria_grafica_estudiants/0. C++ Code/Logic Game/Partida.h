@@ -27,9 +27,11 @@ public:
 
     void setFinalPartida(bool final) { m_final = final; }
     void setTemps(double time) { m_temps = time; }
+    void setPuntuacio(int punts) { m_puntuacio += punts; }
 
     bool getFinalPartida() const { return m_final; }
     int getmTemps() const { return m_temps; }
+    int getPuntuacio() const { return m_puntuacio; }
 
 private:
     double m_temps = 0;
