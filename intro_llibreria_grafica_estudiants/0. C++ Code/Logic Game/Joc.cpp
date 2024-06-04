@@ -17,12 +17,30 @@ void Joc::novaFigura(const string & nomFitxer)
 	m_figura.inicialitzarFigura(nomFitxer);
 }
 
+void Joc::novaFigura()
+{
+	int numFigura = rand() % 8;
+	int numGir = rand() % 4;
+
+	ofstream fitxerNovaFigura("NovaFigura.txt");
+	if (!fitxerNovaFigura.is_open()) {
+		cout << "ERROR. Escriptura" << endl;
+		return;
+	}
+	else {
+		fitxerNovaFigura << numFigura << " " << 1 << " " << 5 << " " << numGir;
+	}
+	fitxerNovaFigura.close();
+
+	m_figura.inicialitzarFigura("NovaFigura.txt");
+
+}
+
 void Joc::nouTauler(const string& nomFitxer)
 {
 	m_tauler.inicialitzarTaulerActaul(nomFitxer);
 }
 
- // Baixa de cop la figura fins col·locar-la
 void Joc::baixaFiguraCop()
 {
 	while (!m_tauler.colisions(m_figura, m_figura.getFila() + 1, m_figura.getColumna())) {

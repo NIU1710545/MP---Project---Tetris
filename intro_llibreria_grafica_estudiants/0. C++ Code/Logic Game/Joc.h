@@ -19,6 +19,7 @@ public:
 
 	void dibuixa();
 	void novaFigura(const string& nomFitxer);
+	void novaFigura();
 	void nouTauler(const string& nomFitxer);
 	void baixaFiguraCop();
 
