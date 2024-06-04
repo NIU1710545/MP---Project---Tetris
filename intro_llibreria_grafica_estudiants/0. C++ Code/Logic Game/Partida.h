@@ -15,7 +15,7 @@ const int MAX_FIGURES = 7;
 class Partida 
 {
 public:
-    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(20) {}
+    Partida() : m_puntuacio(0), m_nivell(1), m_tempsVelocitat(10) {}
     
     void inicialitza(int mode, const string& fitxerInicial, const string& fitxerFigures,
         const string& fitxerMoviments);

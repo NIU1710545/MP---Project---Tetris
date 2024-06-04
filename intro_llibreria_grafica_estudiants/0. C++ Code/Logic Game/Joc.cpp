@@ -8,7 +8,7 @@ void Joc::inicialitza(const string& nomFitxer)
 
 void Joc::dibuixa()
 {
-	//m_tauler.dibuixa();
+	m_tauler.dibuixa();
 	m_figura.dibuixa();
 }
 
