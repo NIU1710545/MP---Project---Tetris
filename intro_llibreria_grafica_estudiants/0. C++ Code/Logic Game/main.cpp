@@ -52,6 +52,7 @@ int main(int argc, const char* argv[])
     string fitxerFiguresTest = "./data/Games/figures.txt";
     string fitxerMovimentsTest = "./data/Games/moviments.txt";
     string fitxerPartida = "./data/Games/iniciPartida.txt";
+    string fitxerPuntuacions = "./data/Games/Puntuacions.txt";
 
 
     // CODI PER LA GESTIÓ DEL MENÚ I DE LES OPCIONS DEL JOC
@@ -87,7 +88,8 @@ int main(int argc, const char* argv[])
 
             break;
         case 3:
-            tetris.mostraPuntuacions("Puntuacions.txt");
+            tetris.mostraPuntuacions(fitxerPuntuacions);
+            cout << endl;
             break;
         case 4:
             break;
@@ -97,7 +99,7 @@ int main(int argc, const char* argv[])
         }
         
 
-    } while (tetris.getMode() == 4);
+    } while (tetris.getMode() != 4);
 
     //Instruccio necesaria per alliberar els recursos de la llibreria 
     SDL_Quit();

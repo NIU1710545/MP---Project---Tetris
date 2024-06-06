@@ -112,7 +112,6 @@ void Partida::actualitza(int mode, double deltaTime)
             break;
         }
         m_nMoviment++;
-        
     }
 
     if (!m_joc.comprovaTaulerPle()) {
@@ -149,7 +148,6 @@ void Partida::actualitza(int mode, double deltaTime)
     // Actualització nivell i velocitat
 
     if (m_temps >= m_tempsVelocitat) {
-
         m_joc.baixaFigura();
         m_temps = 0.0;
     }

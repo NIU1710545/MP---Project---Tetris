@@ -75,13 +75,14 @@ void Joc::baixaFiguraCop()
 	while (!m_tauler.colisions(m_figura, m_figura.getFila() + 1, m_figura.getColumna())) {
 		m_tauler.baixarFigura(m_figura);
 	}
+	colocada = true;
 }
 
 bool Joc::comprovaTaulerPle()
 {
 	for (int i = 0; i < N_COL_TAULER; i++) {
 		if (m_tauler.getCasellaRef(i, 0) != 0) {
-			return true;
+			return false;
 		}
 	}
 }
