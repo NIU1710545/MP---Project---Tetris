@@ -32,7 +32,7 @@ void Tetris::inicialitzar(int mode, const string& fitxerInicial, const string& f
 }
 
 
-bool Tetris::juga(int mode, double deltaTime)
+void Tetris::juga(int mode, double deltaTime)
 {
 	if (!m_partida.getFinalPartida()) {
 
@@ -55,10 +55,9 @@ bool Tetris::juga(int mode, double deltaTime)
 		string msgNom = "Introdueix el nom d'usuari, tot seguit sense espais: "; 
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_TAULER, POS_Y_TAULER - 50, 1.0, missatgeFinal);
 		string nomUsuari = " "; cin >> nomUsuari;
-		afegirPuntuacio("Puntuacions.txt", nomUsuari, m_partida.getNivell(), m_partida.getPuntuacio())
+		afegirPuntuacio("Puntuacions.txt", nomUsuari, m_partida.getNivell(), m_partida.getPuntuacio());
 
 	}
-	return m_partida.getFinalPartida();
 
 }
 

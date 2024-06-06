@@ -43,7 +43,7 @@ void Joc::reiniciarFigures()
 
 void Joc::novaFigura()
 {
-	int numFigura = -1;
+	int numFigura = rand() & 8;
 	int numGir = rand() % 4;
 	
 	if (nFiguresSortir == 7) {

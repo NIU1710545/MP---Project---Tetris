@@ -115,7 +115,7 @@ void Partida::actualitza(int mode, double deltaTime)
         
     }
 
-    if (m_joc.comprovaTaulerPle()) {
+    if (!m_joc.comprovaTaulerPle()) {
         setFinalPartida(true);
     }
 

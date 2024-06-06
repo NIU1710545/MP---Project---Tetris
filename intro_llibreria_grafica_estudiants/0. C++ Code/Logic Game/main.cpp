@@ -60,8 +60,13 @@ int main(int argc, const char* argv[])
 
     do {
         tetris.Menu();
-        tetris.inicialitzar(tetris.getMode(), fitxerPartida, fitxerFiguresTest, fitxerMovimentsTest);
-
+        if (tetris.getMode() == 1) {
+            tetris.inicialitzar(tetris.getMode(), fitxerPartida, fitxerFiguresTest, fitxerMovimentsTest);
+        }
+        else if (tetris.getMode() == 2)
+        {
+            tetris.inicialitzar(tetris.getMode(), fitxerPartidaTest, fitxerFiguresTest, fitxerMovimentsTest);
+        }
         switch (tetris.getMode()) {
         case 1: case 2:
 
@@ -74,7 +79,7 @@ int main(int argc, const char* argv[])
 
                 tetris.getPartida().actualitza(tetris.getMode(), deltaTime);
 
-                bool acabar = tetris.juga(tetris.getMode(), deltaTime);
+                tetris.juga(tetris.getMode(), deltaTime);
                 pantalla.update();
 
 

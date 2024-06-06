@@ -24,7 +24,7 @@ public:
 	void inicialitzar(int mode, const string& fitxerInicial, const string& fitxerFigures,
 		const string& fitxerMoviments);
 
-	bool juga( int mode, double deltaTime);
+	void juga( int mode, double deltaTime);
 	Partida getPartida() const { return m_partida; }
 
 	int getMode() const { return opcioMenu; }
